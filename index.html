@@ -9,272 +9,156 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0d1117;
-  --bg2: #161b22;
-  --bg3: #1c2128;
-  --surface: #21262d;
-  --border: #30363d;
-  --border2: #444c56;
-  --text: #e6edf3;
-  --text2: #8b949e;
-  --text3: #6e7681;
-  --accent: #58a6ff;
-  --green: #3fb950;
-  --green-bg: #0d2215;
-  --red: #f85149;
-  --red-bg: #2d1214;
-  --week-color: #79c0ff;
-  --week-bg: #1a2d42;
-  --purple: #a371f7;
-  --purple-bg: #1a1230;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --radius-xs: 6px;
+  --bg:#0d1117; --bg2:#161b22; --bg3:#1c2128; --surface:#21262d;
+  --border:#30363d; --border2:#444c56;
+  --text:#e6edf3; --text2:#8b949e; --text3:#6e7681;
+  --accent:#58a6ff;
+  --green:#3fb950; --green-bg:#0d2215;
+  --red:#f85149;   --red-bg:#2d1214;
+  --purple:#a371f7; --purple-bg:#1a1230;
+  --week-color:#79c0ff; --week-bg:#1a2d42;
+  --r:12px; --rsm:8px; --rxs:6px;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
 
 /* ── HEADER ── */
-.header {
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
-  padding: 0 max(1.25rem, env(safe-area-inset-left));
-  position: sticky; top: 0; z-index: 100;
-}
-.header-inner {
-  max-width: 880px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 10px; padding: 13px 0; flex-wrap: wrap;
-}
-.logo-area { display: flex; align-items: center; gap: 10px; }
-.logo-badge {
-  width: 34px; height: 34px;
-  background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
-  border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.logo-badge svg { width: 17px; height: 17px; fill: white; }
-.logo-text h1 {
-  font-family: 'Syne', sans-serif; font-size: 14.5px; font-weight: 700;
-  color: var(--text); letter-spacing: -.01em; line-height: 1.2;
-}
-.logo-text p { font-size: 11px; color: var(--text2); margin-top: 1px; }
-.header-controls { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 max(1.25rem,env(safe-area-inset-left));position:sticky;top:0;z-index:100}
+.header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;flex-wrap:wrap}
+.logo-area{display:flex;align-items:center;gap:10px}
+.logo-badge{width:34px;height:34px;background:linear-gradient(135deg,#0d6efd,#0dcaf0);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-badge svg{width:17px;height:17px;fill:white}
+.logo-text h1{font-family:'Syne',sans-serif;font-size:14.5px;font-weight:700;color:var(--text);letter-spacing:-.01em;line-height:1.2}
+.logo-text p{font-size:11px;color:var(--text2);margin-top:1px}
+.hcontrols{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 
-.seg {
-  display: flex; background: var(--bg3); border: 1px solid var(--border);
-  border-radius: 30px; padding: 3px; gap: 2px;
-}
-.seg button {
-  padding: 5px 13px; font-size: 12px; font-family: 'DM Sans', sans-serif;
-  font-weight: 500; border: none; background: transparent; color: var(--text2);
-  cursor: pointer; border-radius: 24px; transition: all .2s; white-space: nowrap;
-}
-.seg button.on { background: var(--accent); color: #0d1117; }
-.seg button.quiz-on { background: var(--purple); color: #0d1117; }
+.seg{display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:30px;padding:3px;gap:2px}
+.seg button{padding:5px 13px;font-size:12px;font-family:'DM Sans',sans-serif;font-weight:500;border:none;background:transparent;color:var(--text2);cursor:pointer;border-radius:24px;transition:all .2s;white-space:nowrap}
+.seg button.on{background:var(--accent);color:#0d1117}
+.seg button.pon{background:var(--purple);color:#0d1117}
 
-.icon-btn {
-  width: 33px; height: 33px; border-radius: var(--radius-xs);
-  border: 1px solid var(--border); background: transparent; color: var(--text2);
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all .15s; flex-shrink: 0;
-}
-.icon-btn:hover { background: var(--surface); color: var(--text); border-color: var(--border2); }
-.icon-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.icon-btn{width:33px;height:33px;border-radius:var(--rxs);border:1px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.icon-btn:hover{background:var(--surface);color:var(--text);border-color:var(--border2)}
+.icon-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* ── LAYOUT ── */
-.layout { max-width: 880px; margin: 0 auto; padding: 18px max(1.25rem, env(safe-area-inset-left)) 80px; }
+.layout{max-width:900px;margin:0 auto;padding:18px max(1.25rem,env(safe-area-inset-left)) 80px}
 
 /* ── TABS ── */
-.tabs-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-bottom: 16px; }
-.tabs-scroll::-webkit-scrollbar { display: none; }
-.tabs { display: flex; gap: 6px; width: max-content; }
-.tab {
-  padding: 6px 14px; border-radius: 30px; font-size: 12.5px; font-weight: 500;
-  border: 1px solid var(--border); background: var(--bg2); color: var(--text2);
-  cursor: pointer; transition: all .15s; white-space: nowrap; font-family: 'DM Sans', sans-serif;
-}
-.tab:hover:not(.active) { background: var(--surface); color: var(--text); }
-.tab.active { background: var(--accent); color: #0d1117; border-color: var(--accent); font-weight: 600; }
+.tabs-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-bottom:16px}
+.tabs-scroll::-webkit-scrollbar{display:none}
+.tabs{display:flex;gap:6px;width:max-content}
+.tab{padding:6px 14px;border-radius:30px;font-size:12.5px;font-weight:500;border:1px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap;font-family:'DM Sans',sans-serif}
+.tab:hover:not(.active){background:var(--surface);color:var(--text)}
+.tab.active{background:var(--accent);color:#0d1117;border-color:var(--accent);font-weight:600}
 
-/* ── STATS ── */
-.stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 14px; }
-.stat-card {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 13px 10px; text-align: center;
-}
-.stat-num { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
-.stat-lbl { font-size: 10.5px; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: .04em; }
-.s-c .stat-num { color: var(--green); }
-.s-w .stat-num { color: var(--red); }
-.s-r .stat-num { color: var(--text2); }
-.s-p .stat-num { color: var(--accent); }
-.s-q .stat-num { color: var(--purple); }
+/* ── STATS GRID ── */
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.scard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:13px 10px;text-align:center}
+.snum{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;line-height:1;margin-bottom:4px}
+.slbl{font-size:10.5px;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+.sc .snum{color:var(--green)} .sw .snum{color:var(--red)} .sr .snum{color:var(--text2)} .sp .snum{color:var(--accent)} .sq .snum{color:var(--purple)}
 
 /* ── PROGRESS ── */
-.progress-wrap { margin-bottom: 18px; }
-.progress-meta { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text3); margin-bottom: 6px; }
-.progress-bar { height: 4px; background: var(--bg3); border-radius: 4px; overflow: hidden; }
-.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--green)); border-radius: 4px; transition: width .5s cubic-bezier(.4,0,.2,1); }
-.progress-fill.quiz-fill { background: linear-gradient(90deg, var(--purple), #bf91ff); }
+.pwrap{margin-bottom:18px}
+.pmeta{display:flex;justify-content:space-between;font-size:11.5px;color:var(--text3);margin-bottom:6px}
+.pbar{height:4px;background:var(--bg3);border-radius:4px;overflow:hidden}
+.pfill{height:100%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:4px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.pfill.qfill{background:linear-gradient(90deg,var(--purple),#bf91ff)}
 
 /* ── QUIZ BANNER ── */
-.quiz-banner {
-  display: flex; align-items: center; justify-content: space-between;
-  background: var(--purple-bg); border: 1px solid #6e40c9;
-  border-radius: var(--radius); padding: 12px 16px; margin-bottom: 16px; gap: 12px; flex-wrap: wrap;
-}
-.quiz-badge {
-  background: var(--purple); color: #0d1117; font-size: 10px; font-weight: 700;
-  padding: 3px 8px; border-radius: 30px; letter-spacing: .05em; text-transform: uppercase;
-  font-family: 'Syne', sans-serif; flex-shrink: 0;
-}
-.quiz-banner-left { display: flex; align-items: center; gap: 8px; }
-.quiz-banner p { font-size: 12.5px; color: #c9a7ff; }
-.submit-btn {
-  background: var(--purple); color: #0d1117; border: none; padding: 8px 20px;
-  border-radius: 30px; font-size: 13px; font-weight: 700; font-family: 'Syne', sans-serif;
-  cursor: pointer; transition: all .15s; white-space: nowrap;
-}
-.submit-btn:hover { background: #bf91ff; }
+.qbanner{display:flex;align-items:center;justify-content:space-between;background:var(--purple-bg);border:1px solid #6e40c9;border-radius:var(--r);padding:12px 16px;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+.qbadge{background:var(--purple);color:#0d1117;font-size:10px;font-weight:700;padding:3px 8px;border-radius:30px;letter-spacing:.05em;text-transform:uppercase;font-family:'Syne',sans-serif;flex-shrink:0}
+.qbleft{display:flex;align-items:center;gap:8px}
+.qbanner p{font-size:12.5px;color:#c9a7ff}
+.subbtn{background:var(--purple);color:#0d1117;border:none;padding:8px 20px;border-radius:30px;font-size:13px;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer;transition:all .15s;white-space:nowrap}
+.subbtn:hover{background:#bf91ff}
 
 /* ── QUESTION CARD ── */
-.qcard {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 17px 17px 15px; margin-bottom: 10px;
-  transition: border-color .2s; animation: fadeUp .2s ease both;
-}
-.qcard:hover { border-color: var(--border2); }
-.qmeta { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; }
-.qnum { font-size: 11px; font-weight: 600; color: var(--text3); letter-spacing: .04em; text-transform: uppercase; }
-.wtag {
-  font-size: 10.5px; font-weight: 500; color: var(--week-color); background: var(--week-bg);
-  padding: 2px 8px; border-radius: 30px; border: 1px solid #1e3d5a;
-}
-.status-indicator { margin-left: auto; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; }
-.status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; transition: all .2s; }
-.status-dot.unanswered { background: var(--border2); }
-.status-dot.answered   { background: var(--purple); box-shadow: 0 0 5px #a371f766; }
-.status-dot.correct    { background: var(--green);  box-shadow: 0 0 6px #3fb95066; }
-.status-dot.wrong      { background: var(--red);    box-shadow: 0 0 6px #f8514966; }
-.status-label { color: var(--text3); }
-.status-label.answered { color: var(--purple); }
-.status-label.correct  { color: var(--green); }
-.status-label.wrong    { color: var(--red); }
-.qtxt { font-size: 14.5px; color: var(--text); font-weight: 400; line-height: 1.65; margin-bottom: 13px; }
+.qcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:17px 17px 15px;margin-bottom:10px;transition:border-color .2s;animation:fadeUp .2s ease both}
+.qcard:hover{border-color:var(--border2)}
+.qmeta{display:flex;align-items:center;gap:7px;margin-bottom:10px}
+.qnum{font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.04em;text-transform:uppercase}
+.wtag{font-size:10.5px;font-weight:500;color:var(--week-color);background:var(--week-bg);padding:2px 8px;border-radius:30px;border:1px solid #1e3d5a}
+.sind{margin-left:auto;display:flex;align-items:center;gap:4px;font-size:11px;font-weight:500}
+.sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;transition:all .2s}
+.sdot.u{background:var(--border2)}
+.sdot.ans{background:var(--purple);box-shadow:0 0 5px #a371f766}
+.sdot.ok{background:var(--green);box-shadow:0 0 6px #3fb95066}
+.sdot.bad{background:var(--red);box-shadow:0 0 6px #f8514966}
+.slabel{color:var(--text3)}
+.slabel.ans{color:var(--purple)} .slabel.ok{color:var(--green)} .slabel.bad{color:var(--red)}
+.qtxt{font-size:14.5px;color:var(--text);font-weight:400;line-height:1.65;margin-bottom:13px}
 
 /* ── OPTIONS ── */
-.opts { display: flex; flex-direction: column; gap: 7px; }
-.opt {
-  display: flex; align-items: center; gap: 10px;
-  padding: 11px 13px; border-radius: var(--radius-sm);
-  border: 1px solid var(--border); cursor: pointer;
-  font-size: 13.5px; color: var(--text2); background: var(--bg3);
-  transition: all .15s; text-align: left; width: 100%;
-  font-family: 'DM Sans', sans-serif; line-height: 1.45;
-}
-.opt:hover:not(.locked) { background: var(--surface); border-color: var(--border2); color: var(--text); }
-.opt-letter {
-  width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--border2);
-  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 700; color: var(--text3); transition: all .15s;
-  font-family: 'Syne', sans-serif;
-}
-.opt.sel   { border-color: #6e40c9; background: var(--purple-bg); color: #c9a7ff; }
-.opt.sel .opt-letter { border-color: var(--purple); background: var(--purple); color: #0d1117; }
-.opt.ok    { border-color: #2ea043; background: var(--green-bg); color: #7ee787; }
-.opt.ok .opt-letter { border-color: var(--green); background: var(--green); color: #0d1117; }
-.opt.bad   { border-color: #da3633; background: var(--red-bg); color: #ff7b72; }
-.opt.bad .opt-letter { border-color: var(--red); background: var(--red); color: #0d1117; }
-.opt.locked { cursor: default; }
-.opt.locked:not(.ok):not(.bad):not(.sel) { opacity: .5; }
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:var(--rsm);border:1px solid var(--border);cursor:pointer;font-size:13.5px;color:var(--text2);background:var(--bg3);transition:all .15s;text-align:left;width:100%;font-family:'DM Sans',sans-serif;line-height:1.45}
+.opt:hover:not(.locked){background:var(--surface);border-color:var(--border2);color:var(--text)}
+.oletter{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--text3);transition:all .15s;font-family:'Syne',sans-serif}
+
+/* selected (quiz mode, before submit) — purple, CLICKABLE again to deselect/change */
+.opt.sel{border-color:#6e40c9;background:var(--purple-bg);color:#c9a7ff}
+.opt.sel .oletter{border-color:var(--purple);background:var(--purple);color:#0d1117}
+/* correct (practice + results) */
+.opt.ok{border-color:#2ea043;background:var(--green-bg);color:#7ee787}
+.opt.ok .oletter{border-color:var(--green);background:var(--green);color:#0d1117}
+/* wrong chosen (practice + results) */
+.opt.bad{border-color:#da3633;background:var(--red-bg);color:#ff7b72}
+.opt.bad .oletter{border-color:var(--red);background:var(--red);color:#0d1117}
+
+.opt.locked{cursor:default}
+.opt.locked:not(.ok):not(.bad):not(.sel){opacity:.5}
 
 /* ── FEEDBACK ── */
-.fb {
-  display: flex; align-items: flex-start; gap: 8px;
-  margin-top: 11px; padding: 10px 12px; border-radius: var(--radius-sm);
-  font-size: 13px; line-height: 1.5;
-}
-.fb.ok  { background: var(--green-bg); color: #7ee787; border: 1px solid #1a4025; }
-.fb.bad { background: var(--red-bg);   color: #ff7b72; border: 1px solid #4a2020; }
-.fb-icon { flex-shrink: 0; margin-top: 1px; }
-.fb-icon svg { width: 14px; height: 14px; }
-.fb strong { font-weight: 500; color: var(--text); }
+.fb{display:flex;align-items:flex-start;gap:8px;margin-top:11px;padding:10px 12px;border-radius:var(--rsm);font-size:13px;line-height:1.5}
+.fb.ok{background:var(--green-bg);color:#7ee787;border:1px solid #1a4025}
+.fb.bad{background:var(--red-bg);color:#ff7b72;border:1px solid #4a2020}
+.fbi{flex-shrink:0;margin-top:1px}
+.fbi svg{width:14px;height:14px}
+.fb strong{font-weight:500;color:var(--text)}
 
-/* ── RESULTS ── */
-#results-screen { display: none; }
-.results-hero {
-  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 28px 24px; margin-bottom: 20px; text-align: center;
-  animation: popIn .35s ease both;
-}
-.score-ring-wrap {
-  width: 120px; height: 120px; margin: 0 auto 18px;
-  position: relative; display: flex; align-items: center; justify-content: center;
-}
-.score-ring-wrap svg { position: absolute; top: 0; left: 0; transform: rotate(-90deg); }
-.ring-bg   { fill: none; stroke: var(--bg3); stroke-width: 9; }
-.ring-fill { fill: none; stroke-width: 9; stroke-linecap: round; transition: stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1); }
-.score-inner { position: relative; z-index: 1; text-align: center; }
-.score-pct   { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; line-height: 1; }
-.score-sub   { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
-.results-title { font-family: 'Syne', sans-serif; font-size: 21px; font-weight: 700; margin-bottom: 6px; }
-.results-msg   { font-size: 13.5px; color: var(--text2); margin-bottom: 20px; }
-.res-stats { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
-.res-stat  { text-align: center; }
-.res-stat-num { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 700; }
-.res-stat-lbl { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
-.res-stat.c .res-stat-num { color: var(--green); }
-.res-stat.w .res-stat-num { color: var(--red); }
-.res-stat.t .res-stat-num { color: var(--accent); }
-.results-actions { display: flex; justify-content: center; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
-.btn-primary {
-  background: var(--purple); color: #0d1117; border: none; padding: 9px 22px;
-  border-radius: 30px; font-size: 13px; font-weight: 700; font-family: 'Syne', sans-serif;
-  cursor: pointer; transition: all .15s;
-}
-.btn-primary:hover { background: #bf91ff; }
-.btn-secondary {
-  background: transparent; color: var(--text2); border: 1px solid var(--border);
-  padding: 9px 22px; border-radius: 30px; font-size: 13px; font-weight: 500;
-  font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all .15s;
-}
-.btn-secondary:hover { background: var(--surface); color: var(--text); border-color: var(--border2); }
+/* ── RESULTS SCREEN ── */
+#results-screen{display:none}
+#results-screen.visible{display:block}
+.rhero{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:28px 24px;margin-bottom:24px;text-align:center;animation:popIn .35s ease both}
+.ring-wrap{width:120px;height:120px;margin:0 auto 18px;position:relative;display:flex;align-items:center;justify-content:center}
+.ring-wrap svg{position:absolute;top:0;left:0;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--bg3);stroke-width:9}
+.ring-fill{fill:none;stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1)}
+.rinner{position:relative;z-index:1;text-align:center}
+.rpct{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1}
+.rsub{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.rtitle{font-family:'Syne',sans-serif;font-size:21px;font-weight:700;margin-bottom:6px}
+.rmsg{font-size:13.5px;color:var(--text2);margin-bottom:22px}
+.rstats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+.rstat{text-align:center}
+.rstat-num{font-family:'Syne',sans-serif;font-size:24px;font-weight:700}
+.rstat-lbl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+.rstat.c .rstat-num{color:var(--green)} .rstat.w .rstat-num{color:var(--red)} .rstat.t .rstat-num{color:var(--accent)}
+.ractions{display:flex;justify-content:center;gap:10px;margin-top:22px;flex-wrap:wrap}
 
-.review-title {
-  font-family: 'Syne', sans-serif; font-size: 12.5px; font-weight: 700; color: var(--text2);
-  text-transform: uppercase; letter-spacing: .06em; margin-bottom: 12px;
-}
-.wrong-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--red-bg); border: 1px solid #4a2020; color: var(--red);
-  padding: 4px 12px 4px 9px; border-radius: 30px; font-size: 12px; font-weight: 600;
-  margin-bottom: 16px;
-}
-.wrong-badge svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; }
-.perfect-msg {
-  text-align: center; padding: 2rem 1rem;
-  color: var(--green); font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700;
-}
+.btn-p{background:var(--purple);color:#0d1117;border:none;padding:9px 22px;border-radius:30px;font-size:13px;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer;transition:all .15s}
+.btn-p:hover{background:#bf91ff}
+.btn-s{background:transparent;color:var(--text2);border:1px solid var(--border);padding:9px 22px;border-radius:30px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .15s}
+.btn-s:hover{background:var(--surface);color:var(--text);border-color:var(--border2)}
 
-@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
-@keyframes popIn  { from { opacity:0; transform:scale(.96); } to { opacity:1; transform:scale(1); } }
+.rev-title{font-family:'Syne',sans-serif;font-size:12.5px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.wbadge{display:inline-flex;align-items:center;gap:6px;background:var(--red-bg);border:1px solid #4a2020;color:var(--red);padding:4px 12px 4px 9px;border-radius:30px;font-size:12px;font-weight:600;margin-bottom:16px}
+.wbadge svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5}
+.perfect{text-align:center;padding:2rem 1rem;color:var(--green);font-family:'Syne',sans-serif;font-size:16px;font-weight:700}
 
-@media (max-width: 600px) {
-  .stats-grid { grid-template-columns: repeat(2,1fr); }
-  .stat-num { font-size: 20px; }
-  .qtxt { font-size: 13.5px; }
-  .opt { font-size: 12.5px; padding: 10px 11px; }
-  .qcard { padding: 14px 13px 13px; }
-  .results-hero { padding: 20px 14px; }
-  .logo-text h1 { font-size: 13px; }
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+
+@media(max-width:600px){
+  .sgrid{grid-template-columns:repeat(2,1fr)}
+  .snum{font-size:19px} .qtxt{font-size:13.5px}
+  .opt{font-size:12.5px;padding:10px 11px}
+  .qcard{padding:14px 13px 13px}
+  .rhero{padding:20px 14px}
+  .logo-text h1{font-size:13px}
 }
-@media (max-width: 380px) { .logo-text p { display: none; } }
+@media(max-width:380px){.logo-text p{display:none}}
 </style>
 </head>
 <body>
@@ -290,11 +174,13 @@ body {
         <p>NPTEL · Weeks 1–12 · 120 questions</p>
       </div>
     </div>
-    <div class="header-controls">
-      <div class="seg" id="mode-seg">
+    <div class="hcontrols">
+      <!-- App mode -->
+      <div class="seg">
         <button id="btn-practice" class="on" onclick="setAppMode('practice')">Practice</button>
         <button id="btn-quiz"               onclick="setAppMode('quiz')">Quiz</button>
       </div>
+      <!-- Order toggle — only shown in practice mode -->
       <div class="seg" id="order-seg">
         <button id="btn-order"   class="on" onclick="setOrder('order')">In order</button>
         <button id="btn-shuffle"            onclick="setOrder('shuffle')">Shuffled</button>
@@ -307,34 +193,39 @@ body {
 </header>
 
 <div class="layout">
+  <!-- Week tabs -->
   <div class="tabs-scroll"><div class="tabs" id="tabs"></div></div>
 
+  <!-- Stats + progress bar -->
   <div id="meta-area">
-    <div class="stats-grid" id="stats"></div>
-    <div class="progress-wrap">
-      <div class="progress-meta"><span id="prog-label"></span><span id="prog-pct"></span></div>
-      <div class="progress-bar"><div class="progress-fill" id="pbar" style="width:0%"></div></div>
+    <div class="sgrid" id="stats"></div>
+    <div class="pwrap">
+      <div class="pmeta"><span id="prog-label"></span><span id="prog-pct"></span></div>
+      <div class="pbar"><div class="pfill" id="pbar" style="width:0%"></div></div>
     </div>
   </div>
 
-  <div class="quiz-banner" id="quiz-banner" style="display:none">
-    <div class="quiz-banner-left">
-      <span class="quiz-badge">Quiz Mode</span>
-      <p>Answers are hidden. Answer all questions, then submit.</p>
+  <!-- Quiz mode banner -->
+  <div class="qbanner" id="quiz-banner" style="display:none">
+    <div class="qbleft">
+      <span class="qbadge">Quiz Mode</span>
+      <p>All questions shuffled. Select an answer to mark it — tap again to change. Submit when ready.</p>
     </div>
-    <button class="submit-btn" id="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
+    <button class="subbtn" id="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
   </div>
 
+  <!-- Questions view -->
   <div id="quiz-screen"><div id="qs"></div></div>
 
+  <!-- Results view -->
   <div id="results-screen">
-    <div id="results-hero"></div>
+    <div id="rhero" class="rhero"></div>
     <div id="wrong-reviews"></div>
   </div>
 </div>
 
 <script>
-/* ═══════════ DATA ═══════════ */
+/* ═══════ DATA ═══════ */
 const W={
 "Week 1":[
   {q:"The Global Goals were adopted by all United Nations member states in ___ as a universal call to action, with a target year of ___.",opts:["2025, 2080","2020, 2060","2012, 2050","2015, 2030"],a:3},
@@ -482,333 +373,345 @@ const W={
 ]
 };
 
-/* ═══════════ STATE ═══════════ */
-const baseOrder = ["Week 1","Week 2","Week 3","Week 4","Week 5","Week 6","Week 7","Week 8","Week 9","Week 10","Week 11","Week 12"];
-const allQ = [];
-baseOrder.forEach(wk => W[wk].forEach(q => allQ.push({...q, wk})));
+/* ═══════ BASE ARRAYS ═══════ */
+const BASE = ["Week 1","Week 2","Week 3","Week 4","Week 5","Week 6","Week 7","Week 8","Week 9","Week 10","Week 11","Week 12"];
+const ALL  = [];
+BASE.forEach(wk => W[wk].forEach(q => ALL.push({...q, wk})));
 
-let cur = "All Weeks";
-let orderMode = "order";   // "order" | "shuffle"
+/* ═══════ STATE ═══════ */
+let cur       = "All Weeks";
+let orderMode = "order";    // practice only
 let appMode   = "practice"; // "practice" | "quiz"
 
-// ans[key] = original-answer-index chosen by user
+// ans[key] = chosen original-option-index (or undefined)
 let ans = {};
-// optMaps[key] = [{origIdx, text}, ...]  — shuffled option order per question
-let optMaps = {};
-// shuffled question order per tab
-let shuffledQs = {};
+// optMaps[key] = [{origIdx, text}, ...] — shuffled display order, stable per session
+let optMaps  = {};
+// shuffledQs[tab] = shuffled question array
+let shuffQs  = {};
 
-const K = (w, i) => w + "|" + i;
+const K = (w,i) => w+'|'+i;
 
-function shuffleArr(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
+function rnd(arr) {
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=0|Math.random()*(i+1);[a[i],a[j]]=[a[j],a[i]];}
   return a;
 }
 
-function getQuestions(w) {
-  const base = w === "All Weeks" ? allQ : W[w];
-  if (orderMode === "order") return base.map((q, i) => ({...q, _qi: i}));
-  if (!shuffledQs[w]) shuffledQs[w] = shuffleArr(base.map((q, i) => ({...q, _qi: i})));
-  return shuffledQs[w];
+/* Return question list for current tab */
+function getQs(w) {
+  const base = w==="All Weeks" ? ALL : W[w];
+  if (appMode==="quiz") {
+    // quiz always shuffled, stable per session per tab
+    if (!shuffQs[w]) shuffQs[w] = rnd(base.map((q,i)=>({...q,_qi:i})));
+    return shuffQs[w];
+  }
+  // practice: order or shuffle
+  if (orderMode==="order") return base.map((q,i)=>({...q,_qi:i}));
+  if (!shuffQs[w]) shuffQs[w] = rnd(base.map((q,i)=>({...q,_qi:i})));
+  return shuffQs[w];
 }
 
-// Lazily create and cache a shuffled option order for each question slot
-function getOptMap(w, i, q) {
-  const key = K(w, i);
+/* Stable shuffled option order per question slot */
+function getOptMap(w,i,q) {
+  const key=K(w,i);
   if (!optMaps[key]) {
-    const idxs = shuffleArr(q.opts.map((_, j) => j));
-    optMaps[key] = idxs.map(origIdx => ({origIdx, text: q.opts[origIdx]}));
+    optMaps[key] = rnd(q.opts.map((_,j)=>j)).map(oi=>({origIdx:oi,text:q.opts[oi]}));
   }
   return optMaps[key];
 }
 
-/* ═══════════ ICON SVG HELPERS ═══════════ */
-const CHECK_SVG = `<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
-const X_SVG     = `<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+/* ═══════ SVG ICONS ═══════ */
+const CHK = `<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+const XIC = `<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+const L   = ["A","B","C","D"];
 
-/* ═══════════ MODE SWITCHING ═══════════ */
+/* ═══════ MODE SWITCHING ═══════ */
 function setAppMode(m) {
-  if (m === appMode) return;
-  appMode = m;
-  ans = {}; optMaps = {}; shuffledQs = {};
-  document.getElementById("btn-practice").className = "mode-tab" + (m === "practice" ? " on" : "");
-  document.getElementById("btn-quiz").className     = "mode-tab" + (m === "quiz"     ? " quiz-on" : "");
-  document.getElementById("order-seg").style.display = m === "quiz" ? "none" : "";
-  hideResults();
-  draw();
-}
-
-function setOrder(m) {
-  if (m === orderMode) return;
-  orderMode = m; ans = {}; optMaps = {}; shuffledQs = {};
-  document.getElementById("btn-order").classList.toggle("on",   m === "order");
-  document.getElementById("btn-shuffle").classList.toggle("on", m === "shuffle");
-  draw();
-}
-
-function doReset() {
-  ans = {}; optMaps = {}; shuffledQs = {};
+  if (m===appMode) return;
+  appMode=m; ans={}; optMaps={}; shuffQs={};
+  document.getElementById("btn-practice").className = m==="practice" ? "on" : "";
+  document.getElementById("btn-quiz").className      = m==="quiz"     ? "pon" : "";
+  document.getElementById("order-seg").style.display = m==="quiz" ? "none" : "";
   hideResults(); draw();
 }
 
-function hideResults() {
-  document.getElementById("results-screen").style.display = "none";
-  document.getElementById("quiz-screen").style.display    = "";
-  document.getElementById("meta-area").style.display      = "";
+function setOrder(m) {
+  if (m===orderMode) return;
+  orderMode=m; ans={}; optMaps={}; shuffQs={};
+  document.getElementById("btn-order").classList.toggle("on",   m==="order");
+  document.getElementById("btn-shuffle").classList.toggle("on", m==="shuffle");
+  draw();
 }
 
-/* ═══════════ DRAW ═══════════ */
-const weeks = ["All Weeks", ...baseOrder];
+function doReset() { ans={}; optMaps={}; shuffQs={}; hideResults(); draw(); }
 
+function hideResults() {
+  document.getElementById("results-screen").classList.remove("visible");
+  document.getElementById("quiz-screen").style.display    = "";
+  document.getElementById("meta-area").style.display      = "";
+  document.getElementById("quiz-banner").style.display    = appMode==="quiz" ? "flex" : "none";
+}
+
+/* ═══════ DRAW TABS ═══════ */
 function drawTabs() {
-  document.getElementById("tabs").innerHTML = weeks.map(w =>
-    `<button class="tab${w === cur ? " active" : ""}" onclick="sw('${w}')">${w}</button>`
+  const weeks=["All Weeks",...BASE];
+  document.getElementById("tabs").innerHTML = weeks.map(w=>
+    `<button class="tab${w===cur?" active":""}" onclick="sw('${w}')">${w}</button>`
   ).join("");
 }
 
-function computeStats(w) {
-  const qs = getQuestions(w);
-  let done = 0, ok = 0;
-  qs.forEach((q, i) => {
-    const v = ans[K(w, i)];
-    if (v !== undefined) { done++; if (v === q.a) ok++; }
-  });
-  return {total: qs.length, done, ok, wrong: done - ok, pct: qs.length ? Math.round(done / qs.length * 100) : 0};
+/* ═══════ DRAW STATS ═══════ */
+function calcStats(w) {
+  const qs=getQs(w);
+  let done=0,ok=0;
+  qs.forEach((_,i)=>{const v=ans[K(w,i)];if(v!==undefined){done++;if(v===qs[i].a)ok++;}});
+  return {total:qs.length,done,ok,wrong:done-ok,pct:qs.length?Math.round(done/qs.length*100):0};
 }
 
 function drawStats() {
-  const {total, done, ok, wrong, pct} = computeStats(cur);
-  const isQuiz = appMode === "quiz";
-  const pbar = document.getElementById("pbar");
-  pbar.style.width = pct + "%";
-  pbar.className = "progress-fill" + (isQuiz ? " quiz-fill" : "");
-  document.getElementById("prog-label").textContent = `${done} of ${total} answered`;
-  document.getElementById("prog-pct").textContent   = pct + "%";
-
-  if (isQuiz) {
-    document.getElementById("stats").innerHTML = `
-      <div class="stat-card s-q"><div class="stat-num">${done}</div><div class="stat-lbl">Answered</div></div>
-      <div class="stat-card s-r"><div class="stat-num">${total - done}</div><div class="stat-lbl">Remaining</div></div>
-      <div class="stat-card s-p"><div class="stat-num">${pct}%</div><div class="stat-lbl">Filled</div></div>
-      <div class="stat-card"><div class="stat-num" style="color:var(--text2)">${total}</div><div class="stat-lbl">Total</div></div>`;
-  } else {
-    document.getElementById("stats").innerHTML = `
-      <div class="stat-card s-c"><div class="stat-num">${ok}</div><div class="stat-lbl">Correct</div></div>
-      <div class="stat-card s-w"><div class="stat-num">${wrong}</div><div class="stat-lbl">Incorrect</div></div>
-      <div class="stat-card s-r"><div class="stat-num">${total - done}</div><div class="stat-lbl">Remaining</div></div>
-      <div class="stat-card s-p"><div class="stat-num">${pct}%</div><div class="stat-lbl">Progress</div></div>`;
-  }
+  const {total,done,ok,wrong,pct}=calcStats(cur);
+  const isQ=appMode==="quiz";
+  const bar=document.getElementById("pbar");
+  bar.style.width=pct+"%";
+  bar.className="pfill"+(isQ?" qfill":"");
+  document.getElementById("prog-label").textContent=`${done} of ${total} answered`;
+  document.getElementById("prog-pct").textContent=pct+"%";
+  document.getElementById("stats").innerHTML = isQ
+    ? `<div class="scard sq"><div class="snum">${done}</div><div class="slbl">Answered</div></div>
+       <div class="scard sr"><div class="snum">${total-done}</div><div class="slbl">Remaining</div></div>
+       <div class="scard sp"><div class="snum">${pct}%</div><div class="slbl">Filled</div></div>
+       <div class="scard"><div class="snum" style="color:var(--text2)">${total}</div><div class="slbl">Total</div></div>`
+    : `<div class="scard sc"><div class="snum">${ok}</div><div class="slbl">Correct</div></div>
+       <div class="scard sw"><div class="snum">${wrong}</div><div class="slbl">Incorrect</div></div>
+       <div class="scard sr"><div class="snum">${total-done}</div><div class="slbl">Remaining</div></div>
+       <div class="scard sp"><div class="snum">${pct}%</div><div class="slbl">Progress</div></div>`;
 }
 
-const LETTERS = ["A","B","C","D"];
-
-function buildOptsHTML(w, i, q, chosenOrigIdx, mode) {
-  // mode: "unanswered" | "practice-answered" | "quiz-answered" | "results"
-  const optMap = getOptMap(w, i, q);
-  return optMap.map((opt, j) => {
-    let cls = "opt";
-    if (mode === "unanswered") {
-      // nothing extra
-    } else if (mode === "practice-answered") {
-      if (opt.origIdx === q.a)              cls += " ok locked";
-      else if (opt.origIdx === chosenOrigIdx) cls += " bad locked";
-      else                                   cls += " locked";
-    } else if (mode === "quiz-answered") {
-      if (opt.origIdx === chosenOrigIdx) cls += " sel locked";
-      else                               cls += " locked";
-    } else if (mode === "results") {
-      if (opt.origIdx === q.a)              cls += " ok locked";
-      else if (opt.origIdx === chosenOrigIdx) cls += " bad locked";
-      else                                   cls += " locked";
+/* ═══════ BUILD OPTION HTML ═══════ */
+// mode: "free" | "sel-only" | "reveal"
+function buildOpts(w,i,q,chosen,mode) {
+  const om=getOptMap(w,i,q);
+  return om.map((opt,j)=>{
+    let cls="opt";
+    if (mode==="free") {
+      // clickable, nothing highlighted
+    } else if (mode==="sel-only") {
+      // quiz before submit: selected = purple, others not locked (still clickable to change)
+      if (opt.origIdx===chosen) cls+=" sel";
+      // all remain clickable
+    } else if (mode==="reveal") {
+      // after submit / practice answered
+      if (opt.origIdx===q.a)                          cls+=" ok locked";
+      else if (chosen!==undefined && opt.origIdx===chosen) cls+=" bad locked";
+      else                                             cls+=" locked";
     }
-    const click = mode === "unanswered" ? `onclick="pick('${w}',${i},${opt.origIdx})"` : "";
-    return `<button class="${cls}" ${click}><span class="opt-letter">${LETTERS[j]}</span>${opt.text}</button>`;
+    // In sel-only mode all options are still clickable (to allow changing answer)
+    const click = (mode==="reveal") ? "" : `onclick="pick('${w}',${i},${opt.origIdx})"`;
+    return `<button class="${cls}" ${click}><span class="oletter">${L[j]}</span>${opt.text}</button>`;
   }).join("");
 }
 
+/* ═══════ DRAW QUESTIONS ═══════ */
 function drawQs() {
-  const qs = getQuestions(cur);
-  const isQuiz = appMode === "quiz";
-  document.getElementById("qs").innerHTML = qs.map((q, i) => {
-    const key = K(cur, i);
-    const chosen = ans[key];
-    const answered = chosen !== undefined;
-    const tag = cur === "All Weeks" ? `<span class="wtag">${q.wk}</span>` : "";
+  const qs=getQs(cur);
+  const isQ=appMode==="quiz";
+  document.getElementById("qs").innerHTML = qs.map((q,i)=>{
+    const key=K(cur,i);
+    const chosen=ans[key]; // original option index or undefined
+    const answered=chosen!==undefined;
+    const tag=cur==="All Weeks"?`<span class="wtag">${q.wk}</span>`:"";
 
-    let dotClass = "unanswered", statusLabel = "";
-    if (answered) {
-      if (isQuiz)         { dotClass = "answered"; statusLabel = "Answered"; }
-      else if (chosen === q.a) { dotClass = "correct"; statusLabel = "Correct"; }
-      else                { dotClass = "wrong";    statusLabel = "Wrong"; }
+    let dc="u",sl="";
+    if(answered){
+      if(isQ){dc="ans";sl="Answered";}
+      else if(chosen===q.a){dc="ok";sl="Correct";}
+      else{dc="bad";sl="Wrong";}
     }
 
-    let optsMode = "unanswered";
-    if (answered) optsMode = isQuiz ? "quiz-answered" : "practice-answered";
-    const optsHTML = buildOptsHTML(cur, i, q, chosen, optsMode);
+    // In quiz mode before submit: sel-only (still changeable).
+    // In practice after answer: reveal. In practice unanswered: free.
+    const optsMode = isQ ? (answered?"sel-only":"free") : (answered?"reveal":"free");
+    const optsHtml = buildOpts(cur,i,q,chosen,optsMode);
 
-    let fb = "";
-    if (answered && !isQuiz) {
-      fb = chosen === q.a
-        ? `<div class="fb ok"><span class="fb-icon">${CHECK_SVG}</span><span>Correct!</span></div>`
-        : `<div class="fb bad"><span class="fb-icon">${X_SVG}</span><span>The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>`;
+    let fb="";
+    if(answered && !isQ){
+      fb=chosen===q.a
+        ?`<div class="fb ok"><span class="fbi">${CHK}</span><span>Correct!</span></div>`
+        :`<div class="fb bad"><span class="fbi">${XIC}</span><span>The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>`;
     }
 
-    return `<div class="qcard" style="animation-delay:${Math.min(i * .015, .3)}s">
+    return `<div class="qcard" style="animation-delay:${Math.min(i*.015,.3)}s">
       <div class="qmeta">
         <span class="qnum">Q${i+1}</span>${tag}
-        <div class="status-indicator">
-          <span class="status-dot ${dotClass}"></span>
-          ${statusLabel ? `<span class="status-label ${dotClass}">${statusLabel}</span>` : ""}
+        <div class="sind">
+          <span class="sdot ${dc}"></span>
+          ${sl?`<span class="slabel ${dc}">${sl}</span>`:""}
         </div>
       </div>
       <div class="qtxt">${q.q}</div>
-      <div class="opts">${optsHTML}</div>${fb}
+      <div class="opts">${optsHtml}</div>${fb}
     </div>`;
   }).join("") || `<div style="text-align:center;padding:3rem;color:var(--text3)">No questions.</div>`;
 }
 
+/* ═══════ FULL DRAW ═══════ */
 function draw() {
-  drawTabs();
-  const isQuiz = appMode === "quiz";
-  document.getElementById("quiz-banner").style.display = isQuiz ? "flex" : "none";
-  drawStats();
-  drawQs();
+  drawTabs(); drawStats(); drawQs();
+  const isQ=appMode==="quiz";
+  document.getElementById("quiz-banner").style.display=isQ?"flex":"none";
 }
 
-/* ═══════════ PICK ═══════════ */
-function pick(w, i, origIdx) {
-  const key = K(w, i);
-  if (ans[key] !== undefined) return;
-  ans[key] = origIdx;
+/* ═══════ PICK (answer / change answer) ═══════ */
+function pick(w,i,origIdx) {
+  const key=K(w,i);
+  const isQ=appMode==="quiz";
 
-  drawStats();
-  const cards = document.querySelectorAll(".qcard");
-  if (!cards[i]) return;
-  const qs = getQuestions(w);
-  const q  = qs[i];
-
-  const isQuiz = appMode === "quiz";
-  const optsMode = isQuiz ? "quiz-answered" : "practice-answered";
-  cards[i].querySelector(".opts").innerHTML = buildOptsHTML(w, i, q, origIdx, optsMode);
-
-  if (!isQuiz && !cards[i].querySelector(".fb")) {
-    const fb = origIdx === q.a
-      ? `<div class="fb ok"><span class="fb-icon">${CHECK_SVG}</span><span>Correct!</span></div>`
-      : `<div class="fb bad"><span class="fb-icon">${X_SVG}</span><span>The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>`;
-    cards[i].insertAdjacentHTML("beforeend", fb);
-  }
-
-  const dotClass   = isQuiz ? "answered"                              : (origIdx === q.a ? "correct" : "wrong");
-  const labelText  = isQuiz ? "Answered"                              : (origIdx === q.a ? "Correct" : "Wrong");
-  cards[i].querySelector(".status-dot").className = "status-dot " + dotClass;
-  const lbl = cards[i].querySelector(".status-label");
-  if (lbl) { lbl.className = "status-label " + dotClass; lbl.textContent = labelText; }
-  else     { cards[i].querySelector(".status-indicator").insertAdjacentHTML("beforeend", `<span class="status-label ${dotClass}">${labelText}</span>`); }
-}
-
-/* ═══════════ SUBMIT ═══════════ */
-function submitQuiz() {
-  const qs     = getQuestions(cur);
-  const total  = qs.length;
-  const done   = qs.filter((_, i) => ans[K(cur, i)] !== undefined).length;
-  if (done < total) {
-    if (!confirm(`${total - done} question${total - done > 1 ? "s" : ""} unanswered. Submit anyway?`)) return;
-  }
-
-  let correct = 0;
-  const wrongList = [];
-  qs.forEach((q, i) => {
-    const chosen = ans[K(cur, i)];
-    if (chosen === undefined) { wrongList.push({q, i, chosen: null, skipped: true}); }
-    else if (chosen === q.a)  { correct++; }
-    else                       { wrongList.push({q, i, chosen, skipped: false}); }
-  });
-  showResults(total, correct, wrongList);
-}
-
-/* ═══════════ RESULTS ═══════════ */
-function showResults(total, correct, wrongList) {
-  document.getElementById("quiz-screen").style.display   = "none";
-  document.getElementById("meta-area").style.display     = "none";
-  document.getElementById("quiz-banner").style.display   = "none";
-  document.getElementById("results-screen").style.display = "";
-
-  const wrong = wrongList.length;
-  const pct   = Math.round(correct / total * 100);
-  const circ  = 2 * Math.PI * 46;
-  const offset = circ - (pct / 100) * circ;
-
-  let grade, gColor, gMsg;
-  if      (pct >= 90) { grade = "Excellent!";    gColor = "#3fb950"; gMsg = "Outstanding performance! 🎉"; }
-  else if (pct >= 75) { grade = "Good Job!";      gColor = "#58a6ff"; gMsg = "Well done, keep it up!"; }
-  else if (pct >= 50) { grade = "Keep Going";     gColor = "#e3b341"; gMsg = "You're on the right track."; }
-  else                { grade = "Need Practice";  gColor = "#f85149"; gMsg = "Review the material and try again!"; }
-
-  document.getElementById("results-hero").innerHTML = `
-    <div class="score-ring-wrap">
-      <svg width="120" height="120" viewBox="0 0 120 120">
-        <circle class="ring-bg" cx="60" cy="60" r="46"/>
-        <circle class="ring-fill" cx="60" cy="60" r="46"
-          stroke="${gColor}" stroke-dasharray="${circ}" stroke-dashoffset="${circ}" id="ring-anim"/>
-      </svg>
-      <div class="score-inner">
-        <div class="score-pct" style="color:${gColor}">${pct}%</div>
-        <div class="score-sub">Score</div>
-      </div>
-    </div>
-    <div class="results-title">${grade}</div>
-    <div class="results-msg">${gMsg}</div>
-    <div class="res-stats">
-      <div class="res-stat c"><div class="res-stat-num">${correct}</div><div class="res-stat-lbl">Correct</div></div>
-      <div class="res-stat w"><div class="res-stat-num">${wrong}</div><div class="res-stat-lbl">Wrong${wrongList.filter(x=>x.skipped).length ? ` (${wrongList.filter(x=>x.skipped).length} skipped)` : ""}</div></div>
-      <div class="res-stat t"><div class="res-stat-num">${total}</div><div class="res-stat-lbl">Total</div></div>
-    </div>
-    <div class="results-actions">
-      <button class="btn-primary"    onclick="retakeQuiz()">Retake Quiz</button>
-      <button class="btn-secondary"  onclick="goToPractice()">Review in Practice Mode</button>
-    </div>`;
-
-  requestAnimationFrame(() => setTimeout(() => {
-    const el = document.getElementById("ring-anim");
-    if (el) el.style.strokeDashoffset = offset;
-  }, 80));
-
-  const wr = document.getElementById("wrong-reviews");
-  if (wrongList.length === 0) {
-    wr.innerHTML = `<div class="perfect-msg">🎯 Perfect score — no mistakes!</div>`;
+  if(!isQ) {
+    // Practice: lock on first pick, no changing
+    if(ans[key]!==undefined) return;
+    ans[key]=origIdx;
+    drawStats();
+    // Update just this card
+    const cards=document.querySelectorAll(".qcard");
+    if(!cards[i]) return;
+    const qs=getQs(w); const q=qs[i];
+    cards[i].querySelector(".opts").innerHTML=buildOpts(w,i,q,origIdx,"reveal");
+    if(!cards[i].querySelector(".fb")) {
+      const fb=origIdx===q.a
+        ?`<div class="fb ok"><span class="fbi">${CHK}</span><span>Correct!</span></div>`
+        :`<div class="fb bad"><span class="fbi">${XIC}</span><span>The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>`;
+      cards[i].insertAdjacentHTML("beforeend",fb);
+    }
+    const dc=origIdx===q.a?"ok":"bad", sl=origIdx===q.a?"Correct":"Wrong";
+    cards[i].querySelector(".sdot").className="sdot "+dc;
+    const lbl=cards[i].querySelector(".slabel");
+    if(lbl){lbl.className="slabel "+dc;lbl.textContent=sl;}
+    else{cards[i].querySelector(".sind").insertAdjacentHTML("beforeend",`<span class="slabel ${dc}">${sl}</span>`);}
     return;
   }
 
-  const tag = (q) => cur === "All Weeks" ? `<span class="wtag">${q.wk}</span>` : "";
-  wr.innerHTML = `
-    <div class="review-title">Review Incorrect Answers</div>
-    <div class="wrong-badge">${X_SVG} ${wrongList.length} question${wrongList.length > 1 ? "s" : ""} to review</div>
-    ${wrongList.map(({q, i, chosen, skipped}, ri) => {
-      const optsHTML = buildOptsHTML(cur, i, q, skipped ? null : chosen, "results");
-      const fb = skipped
-        ? `<div class="fb bad"><span class="fb-icon">${X_SVG}</span><span>Not answered. Correct answer: <strong>${q.opts[q.a]}</strong></span></div>`
-        : `<div class="fb bad"><span class="fb-icon">${X_SVG}</span><span>The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>`;
-      return `<div class="qcard" style="animation-delay:${ri * .04}s">
-        <div class="qmeta">
-          <span class="qnum">Q${i+1}</span>${tag(q)}
-          <div class="status-indicator">
-            <span class="status-dot wrong"></span>
-            <span class="status-label wrong">${skipped ? "Skipped" : "Wrong"}</span>
-          </div>
-        </div>
-        <div class="qtxt">${q.q}</div>
-        <div class="opts">${optsHTML}</div>${fb}
-      </div>`;
-    }).join("")}`;
+  // Quiz mode: allow changing answer before submit
+  // If same option tapped again — deselect (toggle off)
+  if(ans[key]===origIdx){
+    delete ans[key];
+  } else {
+    ans[key]=origIdx;
+  }
+  drawStats();
+  // Update just this card's opts + status dot
+  const cards=document.querySelectorAll(".qcard");
+  if(!cards[i]) return;
+  const qs=getQs(w); const q=qs[i];
+  const newChosen=ans[key];
+  const answered=newChosen!==undefined;
+  cards[i].querySelector(".opts").innerHTML=buildOpts(w,i,q,newChosen,answered?"sel-only":"free");
+  const dc=answered?"ans":"u", sl=answered?"Answered":"";
+  cards[i].querySelector(".sdot").className="sdot "+dc;
+  const lbl=cards[i].querySelector(".slabel");
+  if(lbl){lbl.className="slabel "+dc;lbl.textContent=sl;}
+  else if(answered){cards[i].querySelector(".sind").insertAdjacentHTML("beforeend",`<span class="slabel ${dc}">${sl}</span>`);}
 }
 
-function retakeQuiz()  { ans = {}; optMaps = {}; shuffledQs = {}; hideResults(); draw(); }
-function goToPractice(){ appMode = "practice"; document.getElementById("btn-practice").className = "mode-tab on"; document.getElementById("btn-quiz").className = "mode-tab"; document.getElementById("order-seg").style.display = ""; hideResults(); draw(); }
-function sw(w)         { cur = w; hideResults(); draw(); }
+/* ═══════ SUBMIT QUIZ ═══════ */
+function submitQuiz() {
+  const qs=getQs(cur);
+  const total=qs.length;
+  const done=qs.filter((_,i)=>ans[K(cur,i)]!==undefined).length;
+  if(done<total && !confirm(`${total-done} question${total-done>1?"s":""} unanswered. Submit anyway?`)) return;
+
+  let correct=0; const wrongList=[];
+  qs.forEach((q,i)=>{
+    const chosen=ans[K(cur,i)];
+    if(chosen===undefined)  wrongList.push({q,i,chosen:null,skipped:true});
+    else if(chosen===q.a)   correct++;
+    else                    wrongList.push({q,i,chosen,skipped:false});
+  });
+  showResults(total,correct,wrongList);
+}
+
+/* ═══════ RESULTS ═══════ */
+function showResults(total,correct,wrongList) {
+  // Hide quiz screen, show results
+  document.getElementById("quiz-screen").style.display  ="none";
+  document.getElementById("meta-area").style.display    ="none";
+  document.getElementById("quiz-banner").style.display  ="none";
+  document.getElementById("results-screen").classList.add("visible");
+  window.scrollTo({top:0,behavior:"smooth"});
+
+  const wrong=wrongList.length;
+  const pct=Math.round(correct/total*100);
+  const circ=2*Math.PI*46;
+  const offset=circ-(pct/100)*circ;
+
+  let grade,gc,gmsg;
+  if(pct>=90){grade="Excellent!";gc="#3fb950";gmsg="Outstanding performance! 🎉";}
+  else if(pct>=75){grade="Good Job!";gc="#58a6ff";gmsg="Well done, keep it up!";}
+  else if(pct>=50){grade="Keep Going";gc="#e3b341";gmsg="You're on the right track.";}
+  else{grade="Need Practice";gc="#f85149";gmsg="Review the material and try again!";}
+
+  document.getElementById("rhero").innerHTML=`
+    <div class="ring-wrap">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle class="ring-bg" cx="60" cy="60" r="46"/>
+        <circle class="ring-fill" cx="60" cy="60" r="46"
+          stroke="${gc}" stroke-dasharray="${circ}" stroke-dashoffset="${circ}" id="ring-anim"/>
+      </svg>
+      <div class="rinner">
+        <div class="rpct" style="color:${gc}">${pct}%</div>
+        <div class="rsub">Score</div>
+      </div>
+    </div>
+    <div class="rtitle">${grade}</div>
+    <div class="rmsg">${gmsg}</div>
+    <div class="rstats">
+      <div class="rstat c"><div class="rstat-num">${correct}</div><div class="rstat-lbl">Correct</div></div>
+      <div class="rstat w"><div class="rstat-num">${wrong}</div><div class="rstat-lbl">Wrong${wrongList.filter(x=>x.skipped).length?` (${wrongList.filter(x=>x.skipped).length} skipped)`:""}</div></div>
+      <div class="rstat t"><div class="rstat-num">${total}</div><div class="rstat-lbl">Total</div></div>
+    </div>
+    <div class="ractions">
+      <button class="btn-p" onclick="retake()">Retake Quiz</button>
+      <button class="btn-s" onclick="reviewPractice()">Review in Practice Mode</button>
+    </div>`;
+
+  requestAnimationFrame(()=>setTimeout(()=>{
+    const el=document.getElementById("ring-anim");
+    if(el) el.style.strokeDashoffset=offset;
+  },80));
+
+  // Wrong answer review cards
+  const wr=document.getElementById("wrong-reviews");
+  if(wrongList.length===0){
+    wr.innerHTML=`<div class="perfect">🎯 Perfect score — no mistakes!</div>`;
+    return;
+  }
+
+  const tag=q=>cur==="All Weeks"?`<span class="wtag">${q.wk}</span>`:"";
+  wr.innerHTML=`
+    <div class="rev-title">Review Incorrect Answers</div>
+    <div class="wbadge">${XIC} ${wrongList.length} question${wrongList.length>1?"s":""} to review</div>
+    ${wrongList.map(({q,i,chosen,skipped},ri)=>`
+      <div class="qcard" style="animation-delay:${ri*.04}s">
+        <div class="qmeta">
+          <span class="qnum">Q${i+1}</span>${tag(q)}
+          <div class="sind"><span class="sdot bad"></span><span class="slabel bad">${skipped?"Skipped":"Wrong"}</span></div>
+        </div>
+        <div class="qtxt">${q.q}</div>
+        <div class="opts">${buildOpts(cur,i,q,skipped?undefined:chosen,"reveal")}</div>
+        <div class="fb bad"><span class="fbi">${XIC}</span><span>${skipped?"Not answered. ":""}The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>
+      </div>`).join("")}`;
+}
+
+function retake()         { ans={}; optMaps={}; shuffQs={}; hideResults(); draw(); }
+function reviewPractice() {
+  // keep answers so user can see what they got right/wrong in practice view
+  appMode="practice";
+  document.getElementById("btn-practice").className="on";
+  document.getElementById("btn-quiz").className="";
+  document.getElementById("order-seg").style.display="";
+  hideResults(); draw();
+}
+function sw(w)            { cur=w; hideResults(); draw(); }
 
 draw();
 </script>
