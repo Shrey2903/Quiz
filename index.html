@@ -13,31 +13,25 @@
   --bg2: #161b22;
   --bg3: #1c2128;
   --surface: #21262d;
-  --surface2: #2d333b;
   --border: #30363d;
   --border2: #444c56;
   --text: #e6edf3;
   --text2: #8b949e;
   --text3: #6e7681;
   --accent: #58a6ff;
-  --accent-dim: #1f3a5f;
   --green: #3fb950;
-  --green-dim: #1a3a21;
   --green-bg: #0d2215;
   --red: #f85149;
-  --red-dim: #5a1e1c;
   --red-bg: #2d1214;
-  --yellow: #d29922;
-  --yellow-bg: #2d2008;
   --week-color: #79c0ff;
   --week-bg: #1a2d42;
+  --purple: #a371f7;
+  --purple-bg: #1a1230;
   --radius: 12px;
   --radius-sm: 8px;
   --radius-xs: 6px;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--bg);
@@ -51,344 +45,236 @@ body {
   background: var(--bg2);
   border-bottom: 1px solid var(--border);
   padding: 0 max(1.25rem, env(safe-area-inset-left));
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  position: sticky; top: 0; z-index: 100;
 }
-
 .header-inner {
-  max-width: 860px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 0;
-  flex-wrap: wrap;
+  max-width: 880px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; padding: 13px 0; flex-wrap: wrap;
 }
-
 .logo-area { display: flex; align-items: center; gap: 10px; }
-
 .logo-badge {
-  width: 36px; height: 36px;
+  width: 34px; height: 34px;
   background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+  border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
-.logo-badge svg { width: 18px; height: 18px; fill: white; }
-
+.logo-badge svg { width: 17px; height: 17px; fill: white; }
 .logo-text h1 {
-  font-family: 'Syne', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -.01em;
-  line-height: 1.2;
+  font-family: 'Syne', sans-serif; font-size: 14.5px; font-weight: 700;
+  color: var(--text); letter-spacing: -.01em; line-height: 1.2;
 }
-.logo-text p {
-  font-size: 11.5px;
-  color: var(--text2);
-  margin-top: 1px;
-}
+.logo-text p { font-size: 11px; color: var(--text2); margin-top: 1px; }
+.header-controls { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
 
-.header-controls { display: flex; align-items: center; gap: 8px; }
-
-.pill-toggle {
-  display: flex;
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 30px;
-  overflow: hidden;
-  padding: 3px;
-  gap: 2px;
+.seg {
+  display: flex; background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 30px; padding: 3px; gap: 2px;
 }
-.pill-toggle button {
-  padding: 5px 13px;
-  font-size: 12px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  border: none;
-  background: transparent;
-  color: var(--text2);
-  cursor: pointer;
-  border-radius: 24px;
-  transition: all .2s;
+.seg button {
+  padding: 5px 13px; font-size: 12px; font-family: 'DM Sans', sans-serif;
+  font-weight: 500; border: none; background: transparent; color: var(--text2);
+  cursor: pointer; border-radius: 24px; transition: all .2s; white-space: nowrap;
 }
-.pill-toggle button.on {
-  background: var(--accent);
-  color: #0d1117;
-}
+.seg button.on { background: var(--accent); color: #0d1117; }
+.seg button.quiz-on { background: var(--purple); color: #0d1117; }
 
 .icon-btn {
-  width: 34px; height: 34px;
-  border-radius: var(--radius-xs);
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text2);
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .15s;
-  flex-shrink: 0;
+  width: 33px; height: 33px; border-radius: var(--radius-xs);
+  border: 1px solid var(--border); background: transparent; color: var(--text2);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .15s; flex-shrink: 0;
 }
 .icon-btn:hover { background: var(--surface); color: var(--text); border-color: var(--border2); }
 .icon-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ── LAYOUT ── */
-.layout {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 20px max(1.25rem, env(safe-area-inset-left)) 80px;
-}
+.layout { max-width: 880px; margin: 0 auto; padding: 18px max(1.25rem, env(safe-area-inset-left)) 80px; }
 
-/* ── WEEK TABS ── */
-.tabs-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  margin-bottom: 18px;
-  padding-bottom: 2px;
-}
+/* ── TABS ── */
+.tabs-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-bottom: 16px; }
 .tabs-scroll::-webkit-scrollbar { display: none; }
 .tabs { display: flex; gap: 6px; width: max-content; }
 .tab {
-  padding: 6px 14px;
-  border-radius: 30px;
-  font-size: 12.5px;
-  font-weight: 500;
-  border: 1px solid var(--border);
-  background: var(--bg2);
-  color: var(--text2);
-  cursor: pointer;
-  transition: all .15s;
-  white-space: nowrap;
-  font-family: 'DM Sans', sans-serif;
+  padding: 6px 14px; border-radius: 30px; font-size: 12.5px; font-weight: 500;
+  border: 1px solid var(--border); background: var(--bg2); color: var(--text2);
+  cursor: pointer; transition: all .15s; white-space: nowrap; font-family: 'DM Sans', sans-serif;
 }
 .tab:hover:not(.active) { background: var(--surface); color: var(--text); }
 .tab.active { background: var(--accent); color: #0d1117; border-color: var(--accent); font-weight: 600; }
 
 /* ── STATS ── */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-bottom: 16px;
-}
+.stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 14px; }
 .stat-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px 12px;
-  text-align: center;
-  transition: border-color .2s;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 13px 10px; text-align: center;
 }
-.stat-card:hover { border-color: var(--border2); }
-.stat-num {
-  font-family: 'Syne', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.stat-lbl { font-size: 11px; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: .04em; }
-.stat-correct .stat-num { color: var(--green); }
-.stat-wrong .stat-num { color: var(--red); }
-.stat-remain .stat-num { color: var(--text2); }
-.stat-pct .stat-num { color: var(--accent); }
+.stat-num { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+.stat-lbl { font-size: 10.5px; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: .04em; }
+.s-c .stat-num { color: var(--green); }
+.s-w .stat-num { color: var(--red); }
+.s-r .stat-num { color: var(--text2); }
+.s-p .stat-num { color: var(--accent); }
+.s-q .stat-num { color: var(--purple); }
 
 /* ── PROGRESS ── */
-.progress-wrap { margin-bottom: 20px; }
+.progress-wrap { margin-bottom: 18px; }
 .progress-meta { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text3); margin-bottom: 6px; }
 .progress-bar { height: 4px; background: var(--bg3); border-radius: 4px; overflow: hidden; }
 .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--green)); border-radius: 4px; transition: width .5s cubic-bezier(.4,0,.2,1); }
+.progress-fill.quiz-fill { background: linear-gradient(90deg, var(--purple), #bf91ff); }
+
+/* ── QUIZ BANNER ── */
+.quiz-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--purple-bg); border: 1px solid #6e40c9;
+  border-radius: var(--radius); padding: 12px 16px; margin-bottom: 16px; gap: 12px; flex-wrap: wrap;
+}
+.quiz-badge {
+  background: var(--purple); color: #0d1117; font-size: 10px; font-weight: 700;
+  padding: 3px 8px; border-radius: 30px; letter-spacing: .05em; text-transform: uppercase;
+  font-family: 'Syne', sans-serif; flex-shrink: 0;
+}
+.quiz-banner-left { display: flex; align-items: center; gap: 8px; }
+.quiz-banner p { font-size: 12.5px; color: #c9a7ff; }
+.submit-btn {
+  background: var(--purple); color: #0d1117; border: none; padding: 8px 20px;
+  border-radius: 30px; font-size: 13px; font-weight: 700; font-family: 'Syne', sans-serif;
+  cursor: pointer; transition: all .15s; white-space: nowrap;
+}
+.submit-btn:hover { background: #bf91ff; }
 
 /* ── QUESTION CARD ── */
 .qcard {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px 18px 16px;
-  margin-bottom: 10px;
-  transition: border-color .2s, transform .1s;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 17px 17px 15px; margin-bottom: 10px;
+  transition: border-color .2s; animation: fadeUp .2s ease both;
 }
 .qcard:hover { border-color: var(--border2); }
-
-.qmeta {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  margin-bottom: 10px;
-}
-.qnum {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text3);
-  letter-spacing: .04em;
-  text-transform: uppercase;
-}
+.qmeta { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; }
+.qnum { font-size: 11px; font-weight: 600; color: var(--text3); letter-spacing: .04em; text-transform: uppercase; }
 .wtag {
-  font-size: 10.5px;
-  font-weight: 500;
-  color: var(--week-color);
-  background: var(--week-bg);
-  padding: 2px 8px;
-  border-radius: 30px;
-  border: 1px solid #1e3d5a;
+  font-size: 10.5px; font-weight: 500; color: var(--week-color); background: var(--week-bg);
+  padding: 2px 8px; border-radius: 30px; border: 1px solid #1e3d5a;
 }
-.status-indicator {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  font-weight: 500;
-}
-.status-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  transition: background .2s;
-}
+.status-indicator { margin-left: auto; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; transition: all .2s; }
 .status-dot.unanswered { background: var(--border2); }
-.status-dot.correct { background: var(--green); box-shadow: 0 0 6px #3fb95066; }
-.status-dot.wrong { background: var(--red); box-shadow: 0 0 6px #f8514966; }
-
+.status-dot.answered   { background: var(--purple); box-shadow: 0 0 5px #a371f766; }
+.status-dot.correct    { background: var(--green);  box-shadow: 0 0 6px #3fb95066; }
+.status-dot.wrong      { background: var(--red);    box-shadow: 0 0 6px #f8514966; }
 .status-label { color: var(--text3); }
-.status-label.correct { color: var(--green); }
-.status-label.wrong { color: var(--red); }
-
-.qtxt {
-  font-size: 14.5px;
-  color: var(--text);
-  font-weight: 400;
-  line-height: 1.65;
-  margin-bottom: 14px;
-}
+.status-label.answered { color: var(--purple); }
+.status-label.correct  { color: var(--green); }
+.status-label.wrong    { color: var(--red); }
+.qtxt { font-size: 14.5px; color: var(--text); font-weight: 400; line-height: 1.65; margin-bottom: 13px; }
 
 /* ── OPTIONS ── */
 .opts { display: flex; flex-direction: column; gap: 7px; }
-
 .opt {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 11px 13px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  cursor: pointer;
-  font-size: 13.5px;
-  color: var(--text2);
-  background: var(--bg3);
-  transition: all .15s;
-  text-align: left;
-  width: 100%;
-  font-family: 'DM Sans', sans-serif;
-  line-height: 1.45;
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 13px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); cursor: pointer;
+  font-size: 13.5px; color: var(--text2); background: var(--bg3);
+  transition: all .15s; text-align: left; width: 100%;
+  font-family: 'DM Sans', sans-serif; line-height: 1.45;
 }
-.opt:hover:not(.locked) {
-  background: var(--surface);
-  border-color: var(--border2);
-  color: var(--text);
-}
-
+.opt:hover:not(.locked) { background: var(--surface); border-color: var(--border2); color: var(--text); }
 .opt-letter {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  border: 1.5px solid var(--border2);
-  flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--text3);
-  transition: all .15s;
-  letter-spacing: 0;
+  width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--border2);
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: var(--text3); transition: all .15s;
   font-family: 'Syne', sans-serif;
 }
-
-/* Correct */
-.opt.ok {
-  border-color: #2ea043;
-  background: var(--green-bg);
-  color: #7ee787;
-}
-.opt.ok .opt-letter {
-  border-color: var(--green);
-  background: var(--green);
-  color: #0d1117;
-}
-
-/* Wrong chosen */
-.opt.bad {
-  border-color: #da3633;
-  background: var(--red-bg);
-  color: #ff7b72;
-}
-.opt.bad .opt-letter {
-  border-color: var(--red);
-  background: var(--red);
-  color: #0d1117;
-}
-
+.opt.sel   { border-color: #6e40c9; background: var(--purple-bg); color: #c9a7ff; }
+.opt.sel .opt-letter { border-color: var(--purple); background: var(--purple); color: #0d1117; }
+.opt.ok    { border-color: #2ea043; background: var(--green-bg); color: #7ee787; }
+.opt.ok .opt-letter { border-color: var(--green); background: var(--green); color: #0d1117; }
+.opt.bad   { border-color: #da3633; background: var(--red-bg); color: #ff7b72; }
+.opt.bad .opt-letter { border-color: var(--red); background: var(--red); color: #0d1117; }
 .opt.locked { cursor: default; }
-.opt.locked:not(.ok):not(.bad) { opacity: .55; }
+.opt.locked:not(.ok):not(.bad):not(.sel) { opacity: .5; }
 
 /* ── FEEDBACK ── */
 .fb {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-top: 12px;
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  line-height: 1.5;
-  font-weight: 400;
+  display: flex; align-items: flex-start; gap: 8px;
+  margin-top: 11px; padding: 10px 12px; border-radius: var(--radius-sm);
+  font-size: 13px; line-height: 1.5;
 }
-.fb.ok {
-  background: var(--green-bg);
-  color: #7ee787;
-  border: 1px solid #1a4025;
-}
-.fb.bad {
-  background: var(--red-bg);
-  color: #ff7b72;
-  border: 1px solid #4a2020;
-}
+.fb.ok  { background: var(--green-bg); color: #7ee787; border: 1px solid #1a4025; }
+.fb.bad { background: var(--red-bg);   color: #ff7b72; border: 1px solid #4a2020; }
 .fb-icon { flex-shrink: 0; margin-top: 1px; }
 .fb-icon svg { width: 14px; height: 14px; }
 .fb strong { font-weight: 500; color: var(--text); }
 
-/* ── EMPTY ── */
-.empty {
-  text-align: center;
-  padding: 4rem 1rem;
-  color: var(--text3);
-  font-size: 14px;
+/* ── RESULTS ── */
+#results-screen { display: none; }
+.results-hero {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 28px 24px; margin-bottom: 20px; text-align: center;
+  animation: popIn .35s ease both;
 }
-.empty svg { margin-bottom: 12px; opacity: .4; }
+.score-ring-wrap {
+  width: 120px; height: 120px; margin: 0 auto 18px;
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.score-ring-wrap svg { position: absolute; top: 0; left: 0; transform: rotate(-90deg); }
+.ring-bg   { fill: none; stroke: var(--bg3); stroke-width: 9; }
+.ring-fill { fill: none; stroke-width: 9; stroke-linecap: round; transition: stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1); }
+.score-inner { position: relative; z-index: 1; text-align: center; }
+.score-pct   { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; line-height: 1; }
+.score-sub   { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
+.results-title { font-family: 'Syne', sans-serif; font-size: 21px; font-weight: 700; margin-bottom: 6px; }
+.results-msg   { font-size: 13.5px; color: var(--text2); margin-bottom: 20px; }
+.res-stats { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+.res-stat  { text-align: center; }
+.res-stat-num { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 700; }
+.res-stat-lbl { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: .04em; margin-top: 2px; }
+.res-stat.c .res-stat-num { color: var(--green); }
+.res-stat.w .res-stat-num { color: var(--red); }
+.res-stat.t .res-stat-num { color: var(--accent); }
+.results-actions { display: flex; justify-content: center; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--purple); color: #0d1117; border: none; padding: 9px 22px;
+  border-radius: 30px; font-size: 13px; font-weight: 700; font-family: 'Syne', sans-serif;
+  cursor: pointer; transition: all .15s;
+}
+.btn-primary:hover { background: #bf91ff; }
+.btn-secondary {
+  background: transparent; color: var(--text2); border: 1px solid var(--border);
+  padding: 9px 22px; border-radius: 30px; font-size: 13px; font-weight: 500;
+  font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all .15s;
+}
+.btn-secondary:hover { background: var(--surface); color: var(--text); border-color: var(--border2); }
 
-/* ── RESPONSIVE ── */
+.review-title {
+  font-family: 'Syne', sans-serif; font-size: 12.5px; font-weight: 700; color: var(--text2);
+  text-transform: uppercase; letter-spacing: .06em; margin-bottom: 12px;
+}
+.wrong-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--red-bg); border: 1px solid #4a2020; color: var(--red);
+  padding: 4px 12px 4px 9px; border-radius: 30px; font-size: 12px; font-weight: 600;
+  margin-bottom: 16px;
+}
+.wrong-badge svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+.perfect-msg {
+  text-align: center; padding: 2rem 1rem;
+  color: var(--green); font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700;
+}
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@keyframes popIn  { from { opacity:0; transform:scale(.96); } to { opacity:1; transform:scale(1); } }
+
 @media (max-width: 600px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
   .stat-num { font-size: 20px; }
-  .header-inner { gap: 8px; }
-  .logo-text h1 { font-size: 13.5px; }
   .qtxt { font-size: 13.5px; }
   .opt { font-size: 12.5px; padding: 10px 11px; }
-  .qcard { padding: 14px 14px 13px; }
+  .qcard { padding: 14px 13px 13px; }
+  .results-hero { padding: 20px 14px; }
+  .logo-text h1 { font-size: 13px; }
 }
-
-@media (max-width: 380px) {
-  .logo-text p { display: none; }
-  .stats-grid { gap: 7px; }
-}
-
-/* Subtle entrance animation */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.qcard { animation: fadeUp .25s ease both; }
+@media (max-width: 380px) { .logo-text p { display: none; } }
 </style>
 </head>
 <body>
@@ -405,11 +291,15 @@ body {
       </div>
     </div>
     <div class="header-controls">
-      <div class="pill-toggle" id="shuffle-toggle">
-        <button id="btn-order" class="on" onclick="setMode('order')">In order</button>
-        <button id="btn-shuffle" onclick="setMode('shuffle')">Shuffled</button>
+      <div class="seg" id="mode-seg">
+        <button id="btn-practice" class="on" onclick="setAppMode('practice')">Practice</button>
+        <button id="btn-quiz"               onclick="setAppMode('quiz')">Quiz</button>
       </div>
-      <button class="icon-btn" onclick="doReset()" title="Reset progress">
+      <div class="seg" id="order-seg">
+        <button id="btn-order"   class="on" onclick="setOrder('order')">In order</button>
+        <button id="btn-shuffle"            onclick="setOrder('shuffle')">Shuffled</button>
+      </div>
+      <button class="icon-btn" onclick="doReset()" title="Reset">
         <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg>
       </button>
     </div>
@@ -418,18 +308,33 @@ body {
 
 <div class="layout">
   <div class="tabs-scroll"><div class="tabs" id="tabs"></div></div>
-  <div class="stats-grid" id="stats"></div>
-  <div class="progress-wrap">
-    <div class="progress-meta">
-      <span id="prog-label">0 answered</span>
-      <span id="prog-pct">0%</span>
+
+  <div id="meta-area">
+    <div class="stats-grid" id="stats"></div>
+    <div class="progress-wrap">
+      <div class="progress-meta"><span id="prog-label"></span><span id="prog-pct"></span></div>
+      <div class="progress-bar"><div class="progress-fill" id="pbar" style="width:0%"></div></div>
     </div>
-    <div class="progress-bar"><div class="progress-fill" id="pbar" style="width:0%"></div></div>
   </div>
-  <div id="qs"></div>
+
+  <div class="quiz-banner" id="quiz-banner" style="display:none">
+    <div class="quiz-banner-left">
+      <span class="quiz-badge">Quiz Mode</span>
+      <p>Answers are hidden. Answer all questions, then submit.</p>
+    </div>
+    <button class="submit-btn" id="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
+  </div>
+
+  <div id="quiz-screen"><div id="qs"></div></div>
+
+  <div id="results-screen">
+    <div id="results-hero"></div>
+    <div id="wrong-reviews"></div>
+  </div>
 </div>
 
 <script>
+/* ═══════════ DATA ═══════════ */
 const W={
 "Week 1":[
   {q:"The Global Goals were adopted by all United Nations member states in ___ as a universal call to action, with a target year of ___.",opts:["2025, 2080","2020, 2060","2012, 2050","2015, 2030"],a:3},
@@ -577,131 +482,334 @@ const W={
 ]
 };
 
-const baseOrder=["Week 1","Week 2","Week 3","Week 4","Week 5","Week 6","Week 7","Week 8","Week 9","Week 10","Week 11","Week 12"];
-const allQ=[];
-baseOrder.forEach(wk=>W[wk].forEach(q=>allQ.push({...q,wk})));
+/* ═══════════ STATE ═══════════ */
+const baseOrder = ["Week 1","Week 2","Week 3","Week 4","Week 5","Week 6","Week 7","Week 8","Week 9","Week 10","Week 11","Week 12"];
+const allQ = [];
+baseOrder.forEach(wk => W[wk].forEach(q => allQ.push({...q, wk})));
 
-let cur="All Weeks",mode="order",ans={},shuffled={};
-const K=(w,i)=>w+"|"+i;
+let cur = "All Weeks";
+let orderMode = "order";   // "order" | "shuffle"
+let appMode   = "practice"; // "practice" | "quiz"
 
-function shuffle(arr){
-  const a=[...arr.map((q,i)=>({...q,_orig:i}))];
-  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+// ans[key] = original-answer-index chosen by user
+let ans = {};
+// optMaps[key] = [{origIdx, text}, ...]  — shuffled option order per question
+let optMaps = {};
+// shuffled question order per tab
+let shuffledQs = {};
+
+const K = (w, i) => w + "|" + i;
+
+function shuffleArr(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
   return a;
 }
 
-function getQ(w){
-  const base=w==="All Weeks"?allQ:W[w];
-  if(mode==="order") return base.map((q,i)=>({...q,_idx:i}));
-  if(!shuffled[w]) shuffled[w]=shuffle(base);
-  return shuffled[w].map((q,i)=>({...q,_idx:i}));
+function getQuestions(w) {
+  const base = w === "All Weeks" ? allQ : W[w];
+  if (orderMode === "order") return base.map((q, i) => ({...q, _qi: i}));
+  if (!shuffledQs[w]) shuffledQs[w] = shuffleArr(base.map((q, i) => ({...q, _qi: i})));
+  return shuffledQs[w];
 }
 
-function setMode(m){
-  if(m===mode)return;
-  mode=m; shuffled={}; ans={};
-  document.getElementById("btn-order").classList.toggle("on",m==="order");
-  document.getElementById("btn-shuffle").classList.toggle("on",m==="shuffle");
+// Lazily create and cache a shuffled option order for each question slot
+function getOptMap(w, i, q) {
+  const key = K(w, i);
+  if (!optMaps[key]) {
+    const idxs = shuffleArr(q.opts.map((_, j) => j));
+    optMaps[key] = idxs.map(origIdx => ({origIdx, text: q.opts[origIdx]}));
+  }
+  return optMaps[key];
+}
+
+/* ═══════════ ICON SVG HELPERS ═══════════ */
+const CHECK_SVG = `<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+const X_SVG     = `<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+
+/* ═══════════ MODE SWITCHING ═══════════ */
+function setAppMode(m) {
+  if (m === appMode) return;
+  appMode = m;
+  ans = {}; optMaps = {}; shuffledQs = {};
+  document.getElementById("btn-practice").className = "mode-tab" + (m === "practice" ? " on" : "");
+  document.getElementById("btn-quiz").className     = "mode-tab" + (m === "quiz"     ? " quiz-on" : "");
+  document.getElementById("order-seg").style.display = m === "quiz" ? "none" : "";
+  hideResults();
   draw();
 }
 
-function doReset(){
-  ans={}; shuffled={};
+function setOrder(m) {
+  if (m === orderMode) return;
+  orderMode = m; ans = {}; optMaps = {}; shuffledQs = {};
+  document.getElementById("btn-order").classList.toggle("on",   m === "order");
+  document.getElementById("btn-shuffle").classList.toggle("on", m === "shuffle");
   draw();
 }
 
-const weeks=["All Weeks",...baseOrder];
+function doReset() {
+  ans = {}; optMaps = {}; shuffledQs = {};
+  hideResults(); draw();
+}
 
-function drawTabs(){
-  document.getElementById("tabs").innerHTML=weeks.map(w=>
-    `<button class="tab${w===cur?" active":""}" onclick="sw('${w}')">${w}</button>`
+function hideResults() {
+  document.getElementById("results-screen").style.display = "none";
+  document.getElementById("quiz-screen").style.display    = "";
+  document.getElementById("meta-area").style.display      = "";
+}
+
+/* ═══════════ DRAW ═══════════ */
+const weeks = ["All Weeks", ...baseOrder];
+
+function drawTabs() {
+  document.getElementById("tabs").innerHTML = weeks.map(w =>
+    `<button class="tab${w === cur ? " active" : ""}" onclick="sw('${w}')">${w}</button>`
   ).join("");
 }
 
-function drawStats(){
-  const qs=getQ(cur);
-  let done=0,ok=0;
-  qs.forEach((q,i)=>{const v=ans[K(cur,i)];if(v!==undefined){done++;if(v===q.a)ok++;}});
-  const wrong=done-ok;
-  const pct=qs.length?Math.round(done/qs.length*100):0;
-  document.getElementById("stats").innerHTML=`
-    <div class="stat-card stat-correct"><div class="stat-num">${ok}</div><div class="stat-lbl">Correct</div></div>
-    <div class="stat-card stat-wrong"><div class="stat-num">${wrong}</div><div class="stat-lbl">Incorrect</div></div>
-    <div class="stat-card stat-remain"><div class="stat-num">${qs.length-done}</div><div class="stat-lbl">Remaining</div></div>
-    <div class="stat-card stat-pct"><div class="stat-num">${pct}%</div><div class="stat-lbl">Progress</div></div>`;
-  document.getElementById("pbar").style.width=pct+"%";
-  document.getElementById("prog-label").textContent=`${done} of ${qs.length} answered`;
-  document.getElementById("prog-pct").textContent=pct+"%";
+function computeStats(w) {
+  const qs = getQuestions(w);
+  let done = 0, ok = 0;
+  qs.forEach((q, i) => {
+    const v = ans[K(w, i)];
+    if (v !== undefined) { done++; if (v === q.a) ok++; }
+  });
+  return {total: qs.length, done, ok, wrong: done - ok, pct: qs.length ? Math.round(done / qs.length * 100) : 0};
 }
 
-function drawQs(){
-  const qs=getQ(cur);
-  const letters=["A","B","C","D"];
-  document.getElementById("qs").innerHTML=qs.map((q,i)=>{
-    const v=ans[K(cur,i)],locked=v!==undefined;
-    const tag=cur==="All Weeks"?`<span class="wtag">${q.wk}</span>`:"";
-    let dotClass="unanswered",statusLabel="";
-    if(locked){dotClass=v===q.a?"correct":"wrong";statusLabel=v===q.a?"Correct":"Wrong";}
-    const opts=q.opts.map((o,j)=>{
-      let c="opt";
-      if(locked){
-        if(j===q.a)c+=" ok locked";
-        else if(j===v)c+=" bad locked";
-        else c+=" locked";
-      }
-      return `<button class="${c}" onclick="pick('${cur}',${i},${j})"><span class="opt-letter">${letters[j]}</span>${o}</button>`;
-    }).join("");
-    const fb=locked?(v===q.a
-      ?`<div class="fb ok"><span class="fb-icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Correct!</span></div>`
-      :`<div class="fb bad"><span class="fb-icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>`):"";
-    return `<div class="qcard" style="animation-delay:${Math.min(i*0.02,0.3)}s">
-      <div class="qmeta">
-        <span class="qnum">Q${i+1}</span>${tag}
-        <div class="status-indicator" style="margin-left:auto">
-          <span class="status-dot ${dotClass}"></span>
-          ${statusLabel?`<span class="status-label ${dotClass}">${statusLabel}</span>`:""}
-        </div>
-      </div>
-      <div class="qtxt">${q.q}</div>
-      <div class="opts">${opts}</div>${fb}
-    </div>`;
-  }).join("") || `<div class="empty"><svg width="40" height="40" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div>No questions found</div></div>`;
-}
+function drawStats() {
+  const {total, done, ok, wrong, pct} = computeStats(cur);
+  const isQuiz = appMode === "quiz";
+  const pbar = document.getElementById("pbar");
+  pbar.style.width = pct + "%";
+  pbar.className = "progress-fill" + (isQuiz ? " quiz-fill" : "");
+  document.getElementById("prog-label").textContent = `${done} of ${total} answered`;
+  document.getElementById("prog-pct").textContent   = pct + "%";
 
-function draw(){drawTabs();drawStats();drawQs();}
-
-function pick(w,i,j){
-  if(ans[K(w,i)]!==undefined)return;
-  ans[K(w,i)]=j;
-  drawStats();
-  const cards=document.querySelectorAll(".qcard");
-  if(cards[i]){
-    const qs=getQ(w);const q=qs[i];
-    const letters=["A","B","C","D"];
-    const opts=q.opts.map((o,jj)=>{
-      let c="opt";
-      if(jj===q.a)c+=" ok locked";
-      else if(jj===j)c+=" bad locked";
-      else c+=" locked";
-      return `<button class="${c}" onclick="pick('${w}',${i},${jj})"><span class="opt-letter">${letters[jj]}</span>${o}</button>`;
-    }).join("");
-    const fb=j===q.a
-      ?`<div class="fb ok"><span class="fb-icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Correct!</span></div>`
-      :`<div class="fb bad"><span class="fb-icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>`;
-    cards[i].querySelector(".opts").innerHTML=opts;
-    if(!cards[i].querySelector(".fb")){cards[i].insertAdjacentHTML("beforeend",fb);}
-    const dot=cards[i].querySelector(".status-dot");
-    dot.className="status-dot "+(j===q.a?"correct":"wrong");
-    const lbl=cards[i].querySelector(".status-label");
-    if(lbl){lbl.className="status-label "+(j===q.a?"correct":"wrong");lbl.textContent=j===q.a?"Correct":"Wrong";}
-    else{
-      const si=cards[i].querySelector(".status-indicator");
-      si.insertAdjacentHTML("beforeend",`<span class="status-label ${j===q.a?"correct":"wrong"}">${j===q.a?"Correct":"Wrong"}</span>`);
-    }
+  if (isQuiz) {
+    document.getElementById("stats").innerHTML = `
+      <div class="stat-card s-q"><div class="stat-num">${done}</div><div class="stat-lbl">Answered</div></div>
+      <div class="stat-card s-r"><div class="stat-num">${total - done}</div><div class="stat-lbl">Remaining</div></div>
+      <div class="stat-card s-p"><div class="stat-num">${pct}%</div><div class="stat-lbl">Filled</div></div>
+      <div class="stat-card"><div class="stat-num" style="color:var(--text2)">${total}</div><div class="stat-lbl">Total</div></div>`;
+  } else {
+    document.getElementById("stats").innerHTML = `
+      <div class="stat-card s-c"><div class="stat-num">${ok}</div><div class="stat-lbl">Correct</div></div>
+      <div class="stat-card s-w"><div class="stat-num">${wrong}</div><div class="stat-lbl">Incorrect</div></div>
+      <div class="stat-card s-r"><div class="stat-num">${total - done}</div><div class="stat-lbl">Remaining</div></div>
+      <div class="stat-card s-p"><div class="stat-num">${pct}%</div><div class="stat-lbl">Progress</div></div>`;
   }
 }
 
-function sw(w){cur=w;draw();}
+const LETTERS = ["A","B","C","D"];
+
+function buildOptsHTML(w, i, q, chosenOrigIdx, mode) {
+  // mode: "unanswered" | "practice-answered" | "quiz-answered" | "results"
+  const optMap = getOptMap(w, i, q);
+  return optMap.map((opt, j) => {
+    let cls = "opt";
+    if (mode === "unanswered") {
+      // nothing extra
+    } else if (mode === "practice-answered") {
+      if (opt.origIdx === q.a)              cls += " ok locked";
+      else if (opt.origIdx === chosenOrigIdx) cls += " bad locked";
+      else                                   cls += " locked";
+    } else if (mode === "quiz-answered") {
+      if (opt.origIdx === chosenOrigIdx) cls += " sel locked";
+      else                               cls += " locked";
+    } else if (mode === "results") {
+      if (opt.origIdx === q.a)              cls += " ok locked";
+      else if (opt.origIdx === chosenOrigIdx) cls += " bad locked";
+      else                                   cls += " locked";
+    }
+    const click = mode === "unanswered" ? `onclick="pick('${w}',${i},${opt.origIdx})"` : "";
+    return `<button class="${cls}" ${click}><span class="opt-letter">${LETTERS[j]}</span>${opt.text}</button>`;
+  }).join("");
+}
+
+function drawQs() {
+  const qs = getQuestions(cur);
+  const isQuiz = appMode === "quiz";
+  document.getElementById("qs").innerHTML = qs.map((q, i) => {
+    const key = K(cur, i);
+    const chosen = ans[key];
+    const answered = chosen !== undefined;
+    const tag = cur === "All Weeks" ? `<span class="wtag">${q.wk}</span>` : "";
+
+    let dotClass = "unanswered", statusLabel = "";
+    if (answered) {
+      if (isQuiz)         { dotClass = "answered"; statusLabel = "Answered"; }
+      else if (chosen === q.a) { dotClass = "correct"; statusLabel = "Correct"; }
+      else                { dotClass = "wrong";    statusLabel = "Wrong"; }
+    }
+
+    let optsMode = "unanswered";
+    if (answered) optsMode = isQuiz ? "quiz-answered" : "practice-answered";
+    const optsHTML = buildOptsHTML(cur, i, q, chosen, optsMode);
+
+    let fb = "";
+    if (answered && !isQuiz) {
+      fb = chosen === q.a
+        ? `<div class="fb ok"><span class="fb-icon">${CHECK_SVG}</span><span>Correct!</span></div>`
+        : `<div class="fb bad"><span class="fb-icon">${X_SVG}</span><span>The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>`;
+    }
+
+    return `<div class="qcard" style="animation-delay:${Math.min(i * .015, .3)}s">
+      <div class="qmeta">
+        <span class="qnum">Q${i+1}</span>${tag}
+        <div class="status-indicator">
+          <span class="status-dot ${dotClass}"></span>
+          ${statusLabel ? `<span class="status-label ${dotClass}">${statusLabel}</span>` : ""}
+        </div>
+      </div>
+      <div class="qtxt">${q.q}</div>
+      <div class="opts">${optsHTML}</div>${fb}
+    </div>`;
+  }).join("") || `<div style="text-align:center;padding:3rem;color:var(--text3)">No questions.</div>`;
+}
+
+function draw() {
+  drawTabs();
+  const isQuiz = appMode === "quiz";
+  document.getElementById("quiz-banner").style.display = isQuiz ? "flex" : "none";
+  drawStats();
+  drawQs();
+}
+
+/* ═══════════ PICK ═══════════ */
+function pick(w, i, origIdx) {
+  const key = K(w, i);
+  if (ans[key] !== undefined) return;
+  ans[key] = origIdx;
+
+  drawStats();
+  const cards = document.querySelectorAll(".qcard");
+  if (!cards[i]) return;
+  const qs = getQuestions(w);
+  const q  = qs[i];
+
+  const isQuiz = appMode === "quiz";
+  const optsMode = isQuiz ? "quiz-answered" : "practice-answered";
+  cards[i].querySelector(".opts").innerHTML = buildOptsHTML(w, i, q, origIdx, optsMode);
+
+  if (!isQuiz && !cards[i].querySelector(".fb")) {
+    const fb = origIdx === q.a
+      ? `<div class="fb ok"><span class="fb-icon">${CHECK_SVG}</span><span>Correct!</span></div>`
+      : `<div class="fb bad"><span class="fb-icon">${X_SVG}</span><span>The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>`;
+    cards[i].insertAdjacentHTML("beforeend", fb);
+  }
+
+  const dotClass   = isQuiz ? "answered"                              : (origIdx === q.a ? "correct" : "wrong");
+  const labelText  = isQuiz ? "Answered"                              : (origIdx === q.a ? "Correct" : "Wrong");
+  cards[i].querySelector(".status-dot").className = "status-dot " + dotClass;
+  const lbl = cards[i].querySelector(".status-label");
+  if (lbl) { lbl.className = "status-label " + dotClass; lbl.textContent = labelText; }
+  else     { cards[i].querySelector(".status-indicator").insertAdjacentHTML("beforeend", `<span class="status-label ${dotClass}">${labelText}</span>`); }
+}
+
+/* ═══════════ SUBMIT ═══════════ */
+function submitQuiz() {
+  const qs     = getQuestions(cur);
+  const total  = qs.length;
+  const done   = qs.filter((_, i) => ans[K(cur, i)] !== undefined).length;
+  if (done < total) {
+    if (!confirm(`${total - done} question${total - done > 1 ? "s" : ""} unanswered. Submit anyway?`)) return;
+  }
+
+  let correct = 0;
+  const wrongList = [];
+  qs.forEach((q, i) => {
+    const chosen = ans[K(cur, i)];
+    if (chosen === undefined) { wrongList.push({q, i, chosen: null, skipped: true}); }
+    else if (chosen === q.a)  { correct++; }
+    else                       { wrongList.push({q, i, chosen, skipped: false}); }
+  });
+  showResults(total, correct, wrongList);
+}
+
+/* ═══════════ RESULTS ═══════════ */
+function showResults(total, correct, wrongList) {
+  document.getElementById("quiz-screen").style.display   = "none";
+  document.getElementById("meta-area").style.display     = "none";
+  document.getElementById("quiz-banner").style.display   = "none";
+  document.getElementById("results-screen").style.display = "";
+
+  const wrong = wrongList.length;
+  const pct   = Math.round(correct / total * 100);
+  const circ  = 2 * Math.PI * 46;
+  const offset = circ - (pct / 100) * circ;
+
+  let grade, gColor, gMsg;
+  if      (pct >= 90) { grade = "Excellent!";    gColor = "#3fb950"; gMsg = "Outstanding performance! 🎉"; }
+  else if (pct >= 75) { grade = "Good Job!";      gColor = "#58a6ff"; gMsg = "Well done, keep it up!"; }
+  else if (pct >= 50) { grade = "Keep Going";     gColor = "#e3b341"; gMsg = "You're on the right track."; }
+  else                { grade = "Need Practice";  gColor = "#f85149"; gMsg = "Review the material and try again!"; }
+
+  document.getElementById("results-hero").innerHTML = `
+    <div class="score-ring-wrap">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle class="ring-bg" cx="60" cy="60" r="46"/>
+        <circle class="ring-fill" cx="60" cy="60" r="46"
+          stroke="${gColor}" stroke-dasharray="${circ}" stroke-dashoffset="${circ}" id="ring-anim"/>
+      </svg>
+      <div class="score-inner">
+        <div class="score-pct" style="color:${gColor}">${pct}%</div>
+        <div class="score-sub">Score</div>
+      </div>
+    </div>
+    <div class="results-title">${grade}</div>
+    <div class="results-msg">${gMsg}</div>
+    <div class="res-stats">
+      <div class="res-stat c"><div class="res-stat-num">${correct}</div><div class="res-stat-lbl">Correct</div></div>
+      <div class="res-stat w"><div class="res-stat-num">${wrong}</div><div class="res-stat-lbl">Wrong${wrongList.filter(x=>x.skipped).length ? ` (${wrongList.filter(x=>x.skipped).length} skipped)` : ""}</div></div>
+      <div class="res-stat t"><div class="res-stat-num">${total}</div><div class="res-stat-lbl">Total</div></div>
+    </div>
+    <div class="results-actions">
+      <button class="btn-primary"    onclick="retakeQuiz()">Retake Quiz</button>
+      <button class="btn-secondary"  onclick="goToPractice()">Review in Practice Mode</button>
+    </div>`;
+
+  requestAnimationFrame(() => setTimeout(() => {
+    const el = document.getElementById("ring-anim");
+    if (el) el.style.strokeDashoffset = offset;
+  }, 80));
+
+  const wr = document.getElementById("wrong-reviews");
+  if (wrongList.length === 0) {
+    wr.innerHTML = `<div class="perfect-msg">🎯 Perfect score — no mistakes!</div>`;
+    return;
+  }
+
+  const tag = (q) => cur === "All Weeks" ? `<span class="wtag">${q.wk}</span>` : "";
+  wr.innerHTML = `
+    <div class="review-title">Review Incorrect Answers</div>
+    <div class="wrong-badge">${X_SVG} ${wrongList.length} question${wrongList.length > 1 ? "s" : ""} to review</div>
+    ${wrongList.map(({q, i, chosen, skipped}, ri) => {
+      const optsHTML = buildOptsHTML(cur, i, q, skipped ? null : chosen, "results");
+      const fb = skipped
+        ? `<div class="fb bad"><span class="fb-icon">${X_SVG}</span><span>Not answered. Correct answer: <strong>${q.opts[q.a]}</strong></span></div>`
+        : `<div class="fb bad"><span class="fb-icon">${X_SVG}</span><span>The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>`;
+      return `<div class="qcard" style="animation-delay:${ri * .04}s">
+        <div class="qmeta">
+          <span class="qnum">Q${i+1}</span>${tag(q)}
+          <div class="status-indicator">
+            <span class="status-dot wrong"></span>
+            <span class="status-label wrong">${skipped ? "Skipped" : "Wrong"}</span>
+          </div>
+        </div>
+        <div class="qtxt">${q.q}</div>
+        <div class="opts">${optsHTML}</div>${fb}
+      </div>`;
+    }).join("")}`;
+}
+
+function retakeQuiz()  { ans = {}; optMaps = {}; shuffledQs = {}; hideResults(); draw(); }
+function goToPractice(){ appMode = "practice"; document.getElementById("btn-practice").className = "mode-tab on"; document.getElementById("btn-quiz").className = "mode-tab"; document.getElementById("order-seg").style.display = ""; hideResults(); draw(); }
+function sw(w)         { cur = w; hideResults(); draw(); }
+
 draw();
 </script>
 </body>
