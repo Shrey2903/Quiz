@@ -45,12 +45,34 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .layout{max-width:900px;margin:0 auto;padding:18px max(1.25rem,env(safe-area-inset-left)) 80px}
 
 /* ── TABS ── */
-.tabs-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-bottom:16px}
+.tabs-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-bottom:10px}
 .tabs-scroll::-webkit-scrollbar{display:none}
 .tabs{display:flex;gap:6px;width:max-content}
 .tab{padding:6px 14px;border-radius:30px;font-size:12.5px;font-weight:500;border:1px solid var(--border);background:var(--bg2);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap;font-family:'DM Sans',sans-serif}
 .tab:hover:not(.active){background:var(--surface);color:var(--text)}
 .tab.active{background:var(--accent);color:#0d1117;border-color:var(--accent);font-weight:600}
+
+/* ── MULTI-WEEK PANEL ── */
+.mw-panel{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:14px}
+.mw-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.mw-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.05em}
+.mw-actions{display:flex;gap:6px}
+.mw-act{font-size:11.5px;font-weight:500;color:var(--accent);background:transparent;border:none;cursor:pointer;padding:3px 8px;border-radius:20px;border:1px solid transparent;transition:all .15s;font-family:'DM Sans',sans-serif}
+.mw-act:hover{border-color:var(--accent);background:rgba(88,166,255,.08)}
+.mw-grid{display:flex;flex-wrap:wrap;gap:7px}
+.wk-chip{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:30px;border:1px solid var(--border);background:var(--bg3);color:var(--text2);cursor:pointer;font-size:12.5px;font-weight:500;transition:all .15s;user-select:none;font-family:'DM Sans',sans-serif}
+.wk-chip:hover{border-color:var(--border2);color:var(--text)}
+.wk-chip.sel{border-color:var(--purple);background:var(--purple-bg);color:#c9a7ff}
+.wk-chip .ck{width:14px;height:14px;border-radius:4px;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.wk-chip.sel .ck{background:var(--purple);border-color:var(--purple)}
+.wk-chip .ck svg{width:9px;height:9px;stroke:white;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .1s}
+.wk-chip.sel .ck svg{opacity:1}
+.mw-summary{margin-top:12px;padding-top:10px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.mw-count{font-size:12px;color:var(--text3)}
+.mw-count span{color:var(--text2);font-weight:500}
+.apply-btn{background:var(--purple);color:#0d1117;border:none;padding:7px 18px;border-radius:30px;font-size:12.5px;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer;transition:all .15s}
+.apply-btn:hover{background:#bf91ff}
+.apply-btn:disabled{opacity:.4;cursor:default}
 
 /* ── STATS GRID ── */
 .sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
@@ -71,8 +93,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .qbadge{background:var(--purple);color:#0d1117;font-size:10px;font-weight:700;padding:3px 8px;border-radius:30px;letter-spacing:.05em;text-transform:uppercase;font-family:'Syne',sans-serif;flex-shrink:0}
 .qbleft{display:flex;align-items:center;gap:8px}
 .qbanner p{font-size:12.5px;color:#c9a7ff}
-.subbtn{background:var(--purple);color:#0d1117;border:none;padding:8px 20px;border-radius:30px;font-size:13px;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer;transition:all .15s;white-space:nowrap}
+
+/* ── STICKY SUBMIT BAR ── */
+.sticky-submit{position:fixed;bottom:0;left:0;right:0;z-index:200;padding:12px 16px;background:var(--bg2);border-top:1px solid #6e40c9;display:none;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;backdrop-filter:blur(8px)}
+.sticky-submit.visible{display:flex}
+.ss-info{display:flex;flex-direction:column;gap:2px}
+.ss-label{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--purple)}
+.ss-count{font-size:12.5px;color:var(--text2)}
+.ss-count span{color:var(--text);font-weight:500}
+.ss-right{display:flex;align-items:center;gap:10px}
+.ss-prog{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text3)}
+.ss-pbar{width:80px;height:4px;background:var(--bg3);border-radius:4px;overflow:hidden}
+.ss-pfill{height:100%;background:linear-gradient(90deg,var(--purple),#bf91ff);border-radius:4px;transition:width .4s ease}
+.subbtn{background:var(--purple);color:#0d1117;border:none;padding:9px 24px;border-radius:30px;font-size:13px;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer;transition:all .15s;white-space:nowrap}
 .subbtn:hover{background:#bf91ff}
+.subbtn:active{transform:scale(.97)}
 
 /* ── QUESTION CARD ── */
 .qcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:17px 17px 15px;margin-bottom:10px;transition:border-color .2s;animation:fadeUp .2s ease both}
@@ -95,17 +130,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .opt{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:var(--rsm);border:1px solid var(--border);cursor:pointer;font-size:13.5px;color:var(--text2);background:var(--bg3);transition:all .15s;text-align:left;width:100%;font-family:'DM Sans',sans-serif;line-height:1.45}
 .opt:hover:not(.locked){background:var(--surface);border-color:var(--border2);color:var(--text)}
 .oletter{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--text3);transition:all .15s;font-family:'Syne',sans-serif}
-
-/* selected (quiz mode, before submit) — purple, CLICKABLE again to deselect/change */
 .opt.sel{border-color:#6e40c9;background:var(--purple-bg);color:#c9a7ff}
 .opt.sel .oletter{border-color:var(--purple);background:var(--purple);color:#0d1117}
-/* correct (practice + results) */
 .opt.ok{border-color:#2ea043;background:var(--green-bg);color:#7ee787}
 .opt.ok .oletter{border-color:var(--green);background:var(--green);color:#0d1117}
-/* wrong chosen (practice + results) */
 .opt.bad{border-color:#da3633;background:var(--red-bg);color:#ff7b72}
 .opt.bad .oletter{border-color:var(--red);background:var(--red);color:#0d1117}
-
 .opt.locked{cursor:default}
 .opt.locked:not(.ok):not(.bad):not(.sel){opacity:.5}
 
@@ -147,6 +177,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .wbadge svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5}
 .perfect{text-align:center;padding:2rem 1rem;color:var(--green);font-family:'Syne',sans-serif;font-size:16px;font-weight:700}
 
+/* active weeks badge */
+.active-badge{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--purple);background:var(--purple-bg);border:1px solid #6e40c9;padding:3px 10px;border-radius:20px;font-weight:500;margin-bottom:12px;flex-wrap:wrap}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes popIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
 
@@ -157,6 +190,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .qcard{padding:14px 13px 13px}
   .rhero{padding:20px 14px}
   .logo-text h1{font-size:13px}
+  .ss-pbar{width:50px}
+  .sticky-submit{padding:10px 14px}
 }
 @media(max-width:380px){.logo-text p{display:none}}
 </style>
@@ -175,15 +210,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       </div>
     </div>
     <div class="hcontrols">
-      <!-- App mode -->
       <div class="seg">
         <button id="btn-practice" class="on" onclick="setAppMode('practice')">Practice</button>
-        <button id="btn-quiz"               onclick="setAppMode('quiz')">Quiz</button>
+        <button id="btn-quiz" onclick="setAppMode('quiz')">Quiz</button>
       </div>
-      <!-- Order toggle — only shown in practice mode -->
       <div class="seg" id="order-seg">
-        <button id="btn-order"   class="on" onclick="setOrder('order')">In order</button>
-        <button id="btn-shuffle"            onclick="setOrder('shuffle')">Shuffled</button>
+        <button id="btn-order" class="on" onclick="setOrder('order')">In order</button>
+        <button id="btn-shuffle" onclick="setOrder('shuffle')">Shuffled</button>
       </div>
       <button class="icon-btn" onclick="doReset()" title="Reset">
         <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg>
@@ -192,9 +225,41 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   </div>
 </header>
 
+<!-- Sticky Submit Bar (quiz mode only) -->
+<div class="sticky-submit" id="sticky-submit">
+  <div class="ss-info">
+    <span class="ss-label">Quiz Mode</span>
+    <span class="ss-count"><span id="ss-done">0</span> of <span id="ss-total">0</span> answered</span>
+  </div>
+  <div class="ss-right">
+    <div class="ss-prog">
+      <div class="ss-pbar"><div class="ss-pfill" id="ss-pfill" style="width:0%"></div></div>
+      <span id="ss-pct">0%</span>
+    </div>
+    <button class="subbtn" onclick="submitQuiz()">Submit Quiz</button>
+  </div>
+</div>
+
 <div class="layout">
-  <!-- Week tabs -->
-  <div class="tabs-scroll"><div class="tabs" id="tabs"></div></div>
+
+  <!-- Multi-week selector -->
+  <div class="mw-panel" id="mw-panel">
+    <div class="mw-header">
+      <span class="mw-title">Select weeks</span>
+      <div class="mw-actions">
+        <button class="mw-act" onclick="selectAllWeeks()">All</button>
+        <button class="mw-act" onclick="clearAllWeeks()">None</button>
+      </div>
+    </div>
+    <div class="mw-grid" id="mw-grid"></div>
+    <div class="mw-summary">
+      <span class="mw-count" id="mw-count">0 weeks · 0 questions selected</span>
+      <button class="apply-btn" id="apply-btn" onclick="applyWeekSelection()" disabled>Apply</button>
+    </div>
+  </div>
+
+  <!-- Active weeks badge -->
+  <div id="active-badge-wrap"></div>
 
   <!-- Stats + progress bar -->
   <div id="meta-area">
@@ -205,13 +270,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     </div>
   </div>
 
-  <!-- Quiz mode banner -->
+  <!-- Quiz mode info banner (no submit button — it's in sticky bar) -->
   <div class="qbanner" id="quiz-banner" style="display:none">
     <div class="qbleft">
       <span class="qbadge">Quiz Mode</span>
-      <p>All questions shuffled. Select an answer to mark it — tap again to change. Submit when ready.</p>
+      <p>All questions shuffled. Tap an option to select — tap again to change. Submit using the bar at the bottom.</p>
     </div>
-    <button class="subbtn" id="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
   </div>
 
   <!-- Questions view -->
@@ -373,24 +437,18 @@ const W={
 ]
 };
 
-/* ═══════ BASE ARRAYS ═══════ */
 const BASE = ["Week 1","Week 2","Week 3","Week 4","Week 5","Week 6","Week 7","Week 8","Week 9","Week 10","Week 11","Week 12"];
-const ALL  = [];
-BASE.forEach(wk => W[wk].forEach(q => ALL.push({...q, wk})));
 
 /* ═══════ STATE ═══════ */
-let cur       = "All Weeks";
-let orderMode = "order";    // practice only
-let appMode   = "practice"; // "practice" | "quiz"
-
-// ans[key] = chosen original-option-index (or undefined)
+let selectedWeeks = new Set(BASE); // pending selection in panel
+let activeWeeks   = [...BASE];     // actually applied selection
+let orderMode = "order";
+let appMode   = "practice";
 let ans = {};
-// optMaps[key] = [{origIdx, text}, ...] — shuffled display order, stable per session
 let optMaps  = {};
-// shuffledQs[tab] = shuffled question array
 let shuffQs  = {};
 
-const K = (w,i) => w+'|'+i;
+const K = (i) => 'q'+i; // index into activeQs
 
 function rnd(arr) {
   const a=[...arr];
@@ -398,33 +456,94 @@ function rnd(arr) {
   return a;
 }
 
-/* Return question list for current tab */
-function getQs(w) {
-  const base = w==="All Weeks" ? ALL : W[w];
-  if (appMode==="quiz") {
-    // quiz always shuffled, stable per session per tab
-    if (!shuffQs[w]) shuffQs[w] = rnd(base.map((q,i)=>({...q,_qi:i})));
-    return shuffQs[w];
-  }
-  // practice: order or shuffle
-  if (orderMode==="order") return base.map((q,i)=>({...q,_qi:i}));
-  if (!shuffQs[w]) shuffQs[w] = rnd(base.map((q,i)=>({...q,_qi:i})));
-  return shuffQs[w];
+/* Build flat question list from activeWeeks */
+function buildActiveQs() {
+  const base = [];
+  activeWeeks.forEach(wk => W[wk].forEach(q => base.push({...q, wk})));
+  return base;
 }
 
-/* Stable shuffled option order per question slot */
-function getOptMap(w,i,q) {
-  const key=K(w,i);
+let _activeQs = null;
+function getActiveBase() {
+  if (!_activeQs) _activeQs = buildActiveQs();
+  return _activeQs;
+}
+
+function getQs() {
+  const base = getActiveBase();
+  if (appMode==="quiz") {
+    if (!shuffQs['__quiz']) shuffQs['__quiz'] = rnd(base.map((q,i)=>({...q,_qi:i})));
+    return shuffQs['__quiz'];
+  }
+  if (orderMode==="order") return base.map((q,i)=>({...q,_qi:i}));
+  if (!shuffQs['__prac']) shuffQs['__prac'] = rnd(base.map((q,i)=>({...q,_qi:i})));
+  return shuffQs['__prac'];
+}
+
+function getOptMap(i,q) {
+  const key='om'+i;
   if (!optMaps[key]) {
     optMaps[key] = rnd(q.opts.map((_,j)=>j)).map(oi=>({origIdx:oi,text:q.opts[oi]}));
   }
   return optMaps[key];
 }
 
-/* ═══════ SVG ICONS ═══════ */
 const CHK = `<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
 const XIC = `<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
 const L   = ["A","B","C","D"];
+
+/* ═══════ MULTI-WEEK PANEL ═══════ */
+function drawMWPanel() {
+  const grid = document.getElementById("mw-grid");
+  grid.innerHTML = BASE.map(w => {
+    const sel = selectedWeeks.has(w);
+    return `<div class="wk-chip${sel?' sel':''}" onclick="toggleWeek('${w}')">
+      <span class="ck"><svg viewBox="0 0 12 10"><polyline points="1 5 4.5 8.5 11 1"/></svg></span>
+      ${w}
+    </div>`;
+  }).join("");
+  updateMWCount();
+}
+
+function toggleWeek(w) {
+  if (selectedWeeks.has(w)) { if(selectedWeeks.size>1) selectedWeeks.delete(w); }
+  else selectedWeeks.add(w);
+  drawMWPanel();
+}
+
+function selectAllWeeks() { BASE.forEach(w=>selectedWeeks.add(w)); drawMWPanel(); }
+function clearAllWeeks()  { selectedWeeks = new Set([BASE[0]]); drawMWPanel(); }
+
+function updateMWCount() {
+  let total = 0;
+  selectedWeeks.forEach(w => total += W[w].length);
+  const same = setsEqual(selectedWeeks, new Set(activeWeeks));
+  document.getElementById("mw-count").textContent =
+    `${selectedWeeks.size} week${selectedWeeks.size!==1?'s':''} · ${total} questions selected`;
+  document.getElementById("apply-btn").disabled = same;
+}
+
+function setsEqual(a, b) {
+  if (a.size !== b.size) return false;
+  for (const x of a) if (!b.has(x)) return false;
+  return true;
+}
+
+function applyWeekSelection() {
+  activeWeeks = [...selectedWeeks].sort((a,b) => BASE.indexOf(a)-BASE.indexOf(b));
+  _activeQs = null; ans={}; optMaps={}; shuffQs={};
+  drawActiveBadge();
+  document.getElementById("apply-btn").disabled = true;
+  hideResults(); draw();
+}
+
+function drawActiveBadge() {
+  const wrap = document.getElementById("active-badge-wrap");
+  if (activeWeeks.length === BASE.length) { wrap.innerHTML=""; return; }
+  wrap.innerHTML = `<div class="active-badge" style="margin-bottom:12px">
+    Showing: ${activeWeeks.join(', ')}
+  </div>`;
+}
 
 /* ═══════ MODE SWITCHING ═══════ */
 function setAppMode(m) {
@@ -451,26 +570,38 @@ function hideResults() {
   document.getElementById("quiz-screen").style.display    = "";
   document.getElementById("meta-area").style.display      = "";
   document.getElementById("quiz-banner").style.display    = appMode==="quiz" ? "flex" : "none";
+  updateStickyBar();
 }
 
-/* ═══════ DRAW TABS ═══════ */
-function drawTabs() {
-  const weeks=["All Weeks",...BASE];
-  document.getElementById("tabs").innerHTML = weeks.map(w=>
-    `<button class="tab${w===cur?" active":""}" onclick="sw('${w}')">${w}</button>`
-  ).join("");
+/* ═══════ STICKY BAR ═══════ */
+function updateStickyBar() {
+  const bar = document.getElementById("sticky-submit");
+  const isQ = appMode === "quiz";
+  const resultsVisible = document.getElementById("results-screen").classList.contains("visible");
+  if (!isQ || resultsVisible) { bar.classList.remove("visible"); return; }
+
+  const qs = getQs();
+  const total = qs.length;
+  const done  = qs.filter((_,i)=>ans[K(i)]!==undefined).length;
+  const pct   = total ? Math.round(done/total*100) : 0;
+
+  bar.classList.add("visible");
+  document.getElementById("ss-done").textContent  = done;
+  document.getElementById("ss-total").textContent = total;
+  document.getElementById("ss-pct").textContent   = pct + "%";
+  document.getElementById("ss-pfill").style.width = pct + "%";
 }
 
-/* ═══════ DRAW STATS ═══════ */
-function calcStats(w) {
-  const qs=getQs(w);
+/* ═══════ STATS ═══════ */
+function calcStats() {
+  const qs=getQs();
   let done=0,ok=0;
-  qs.forEach((_,i)=>{const v=ans[K(w,i)];if(v!==undefined){done++;if(v===qs[i].a)ok++;}});
+  qs.forEach((_,i)=>{const v=ans[K(i)];if(v!==undefined){done++;if(v===qs[i].a)ok++;}});
   return {total:qs.length,done,ok,wrong:done-ok,pct:qs.length?Math.round(done/qs.length*100):0};
 }
 
 function drawStats() {
-  const {total,done,ok,wrong,pct}=calcStats(cur);
+  const {total,done,ok,wrong,pct}=calcStats();
   const isQ=appMode==="quiz";
   const bar=document.getElementById("pbar");
   bar.style.width=pct+"%";
@@ -488,59 +619,43 @@ function drawStats() {
        <div class="scard sp"><div class="snum">${pct}%</div><div class="slbl">Progress</div></div>`;
 }
 
-/* ═══════ BUILD OPTION HTML ═══════ */
-// mode: "free" | "sel-only" | "reveal"
-function buildOpts(w,i,q,chosen,mode) {
-  const om=getOptMap(w,i,q);
+function buildOpts(i,q,chosen,mode) {
+  const om=getOptMap(i,q);
   return om.map((opt,j)=>{
     let cls="opt";
-    if (mode==="free") {
-      // clickable, nothing highlighted
-    } else if (mode==="sel-only") {
-      // quiz before submit: selected = purple, others not locked (still clickable to change)
-      if (opt.origIdx===chosen) cls+=" sel";
-      // all remain clickable
-    } else if (mode==="reveal") {
-      // after submit / practice answered
-      if (opt.origIdx===q.a)                          cls+=" ok locked";
+    if (mode==="free") {}
+    else if (mode==="sel-only") { if (opt.origIdx===chosen) cls+=" sel"; }
+    else if (mode==="reveal") {
+      if (opt.origIdx===q.a) cls+=" ok locked";
       else if (chosen!==undefined && opt.origIdx===chosen) cls+=" bad locked";
-      else                                             cls+=" locked";
+      else cls+=" locked";
     }
-    // In sel-only mode all options are still clickable (to allow changing answer)
-    const click = (mode==="reveal") ? "" : `onclick="pick('${w}',${i},${opt.origIdx})"`;
+    const click = (mode==="reveal") ? "" : `onclick="pick(${i},${opt.origIdx})"`;
     return `<button class="${cls}" ${click}><span class="oletter">${L[j]}</span>${opt.text}</button>`;
   }).join("");
 }
 
-/* ═══════ DRAW QUESTIONS ═══════ */
 function drawQs() {
-  const qs=getQs(cur);
+  const qs=getQs();
   const isQ=appMode==="quiz";
   document.getElementById("qs").innerHTML = qs.map((q,i)=>{
-    const key=K(cur,i);
-    const chosen=ans[key]; // original option index or undefined
+    const chosen=ans[K(i)];
     const answered=chosen!==undefined;
-    const tag=cur==="All Weeks"?`<span class="wtag">${q.wk}</span>`:"";
-
+    const tag=`<span class="wtag">${q.wk}</span>`;
     let dc="u",sl="";
     if(answered){
       if(isQ){dc="ans";sl="Answered";}
       else if(chosen===q.a){dc="ok";sl="Correct";}
       else{dc="bad";sl="Wrong";}
     }
-
-    // In quiz mode before submit: sel-only (still changeable).
-    // In practice after answer: reveal. In practice unanswered: free.
     const optsMode = isQ ? (answered?"sel-only":"free") : (answered?"reveal":"free");
-    const optsHtml = buildOpts(cur,i,q,chosen,optsMode);
-
+    const optsHtml = buildOpts(i,q,chosen,optsMode);
     let fb="";
     if(answered && !isQ){
       fb=chosen===q.a
         ?`<div class="fb ok"><span class="fbi">${CHK}</span><span>Correct!</span></div>`
         :`<div class="fb bad"><span class="fbi">${XIC}</span><span>The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>`;
     }
-
     return `<div class="qcard" style="animation-delay:${Math.min(i*.015,.3)}s">
       <div class="qmeta">
         <span class="qnum">Q${i+1}</span>${tag}
@@ -555,28 +670,24 @@ function drawQs() {
   }).join("") || `<div style="text-align:center;padding:3rem;color:var(--text3)">No questions.</div>`;
 }
 
-/* ═══════ FULL DRAW ═══════ */
 function draw() {
-  drawTabs(); drawStats(); drawQs();
+  drawStats(); drawQs();
   const isQ=appMode==="quiz";
   document.getElementById("quiz-banner").style.display=isQ?"flex":"none";
+  updateStickyBar();
 }
 
-/* ═══════ PICK (answer / change answer) ═══════ */
-function pick(w,i,origIdx) {
-  const key=K(w,i);
+function pick(i,origIdx) {
+  const key=K(i);
   const isQ=appMode==="quiz";
-
   if(!isQ) {
-    // Practice: lock on first pick, no changing
     if(ans[key]!==undefined) return;
     ans[key]=origIdx;
     drawStats();
-    // Update just this card
     const cards=document.querySelectorAll(".qcard");
     if(!cards[i]) return;
-    const qs=getQs(w); const q=qs[i];
-    cards[i].querySelector(".opts").innerHTML=buildOpts(w,i,q,origIdx,"reveal");
+    const qs=getQs(); const q=qs[i];
+    cards[i].querySelector(".opts").innerHTML=buildOpts(i,q,origIdx,"reveal");
     if(!cards[i].querySelector(".fb")) {
       const fb=origIdx===q.a
         ?`<div class="fb ok"><span class="fbi">${CHK}</span><span>Correct!</span></div>`
@@ -590,22 +701,14 @@ function pick(w,i,origIdx) {
     else{cards[i].querySelector(".sind").insertAdjacentHTML("beforeend",`<span class="slabel ${dc}">${sl}</span>`);}
     return;
   }
-
-  // Quiz mode: allow changing answer before submit
-  // If same option tapped again — deselect (toggle off)
-  if(ans[key]===origIdx){
-    delete ans[key];
-  } else {
-    ans[key]=origIdx;
-  }
-  drawStats();
-  // Update just this card's opts + status dot
+  if(ans[key]===origIdx){ delete ans[key]; } else { ans[key]=origIdx; }
+  drawStats(); updateStickyBar();
   const cards=document.querySelectorAll(".qcard");
   if(!cards[i]) return;
-  const qs=getQs(w); const q=qs[i];
+  const qs=getQs(); const q=qs[i];
   const newChosen=ans[key];
   const answered=newChosen!==undefined;
-  cards[i].querySelector(".opts").innerHTML=buildOpts(w,i,q,newChosen,answered?"sel-only":"free");
+  cards[i].querySelector(".opts").innerHTML=buildOpts(i,q,newChosen,answered?"sel-only":"free");
   const dc=answered?"ans":"u", sl=answered?"Answered":"";
   cards[i].querySelector(".sdot").className="sdot "+dc;
   const lbl=cards[i].querySelector(".slabel");
@@ -613,37 +716,33 @@ function pick(w,i,origIdx) {
   else if(answered){cards[i].querySelector(".sind").insertAdjacentHTML("beforeend",`<span class="slabel ${dc}">${sl}</span>`);}
 }
 
-/* ═══════ SUBMIT QUIZ ═══════ */
 function submitQuiz() {
-  const qs=getQs(cur);
+  const qs=getQs();
   const total=qs.length;
-  const done=qs.filter((_,i)=>ans[K(cur,i)]!==undefined).length;
+  const done=qs.filter((_,i)=>ans[K(i)]!==undefined).length;
   if(done<total && !confirm(`${total-done} question${total-done>1?"s":""} unanswered. Submit anyway?`)) return;
-
   let correct=0; const wrongList=[];
   qs.forEach((q,i)=>{
-    const chosen=ans[K(cur,i)];
-    if(chosen===undefined)  wrongList.push({q,i,chosen:null,skipped:true});
-    else if(chosen===q.a)   correct++;
-    else                    wrongList.push({q,i,chosen,skipped:false});
+    const chosen=ans[K(i)];
+    if(chosen===undefined) wrongList.push({q,i,chosen:null,skipped:true});
+    else if(chosen===q.a)  correct++;
+    else                   wrongList.push({q,i,chosen,skipped:false});
   });
   showResults(total,correct,wrongList);
 }
 
-/* ═══════ RESULTS ═══════ */
 function showResults(total,correct,wrongList) {
-  // Hide quiz screen, show results
   document.getElementById("quiz-screen").style.display  ="none";
   document.getElementById("meta-area").style.display    ="none";
   document.getElementById("quiz-banner").style.display  ="none";
   document.getElementById("results-screen").classList.add("visible");
+  document.getElementById("sticky-submit").classList.remove("visible");
   window.scrollTo({top:0,behavior:"smooth"});
 
   const wrong=wrongList.length;
   const pct=Math.round(correct/total*100);
   const circ=2*Math.PI*46;
   const offset=circ-(pct/100)*circ;
-
   let grade,gc,gmsg;
   if(pct>=90){grade="Excellent!";gc="#3fb950";gmsg="Outstanding performance! 🎉";}
   else if(pct>=75){grade="Good Job!";gc="#58a6ff";gmsg="Well done, keep it up!";}
@@ -679,14 +778,9 @@ function showResults(total,correct,wrongList) {
     if(el) el.style.strokeDashoffset=offset;
   },80));
 
-  // Wrong answer review cards
   const wr=document.getElementById("wrong-reviews");
-  if(wrongList.length===0){
-    wr.innerHTML=`<div class="perfect">🎯 Perfect score — no mistakes!</div>`;
-    return;
-  }
-
-  const tag=q=>cur==="All Weeks"?`<span class="wtag">${q.wk}</span>`:"";
+  if(wrongList.length===0){wr.innerHTML=`<div class="perfect">🎯 Perfect score — no mistakes!</div>`;return;}
+  const tag=q=>`<span class="wtag">${q.wk}</span>`;
   wr.innerHTML=`
     <div class="rev-title">Review Incorrect Answers</div>
     <div class="wbadge">${XIC} ${wrongList.length} question${wrongList.length>1?"s":""} to review</div>
@@ -697,22 +791,23 @@ function showResults(total,correct,wrongList) {
           <div class="sind"><span class="sdot bad"></span><span class="slabel bad">${skipped?"Skipped":"Wrong"}</span></div>
         </div>
         <div class="qtxt">${q.q}</div>
-        <div class="opts">${buildOpts(cur,i,q,skipped?undefined:chosen,"reveal")}</div>
+        <div class="opts">${buildOpts(i,q,skipped?undefined:chosen,"reveal")}</div>
         <div class="fb bad"><span class="fbi">${XIC}</span><span>${skipped?"Not answered. ":""}The correct answer is: <strong>${q.opts[q.a]}</strong></span></div>
       </div>`).join("")}`;
 }
 
 function retake()         { ans={}; optMaps={}; shuffQs={}; hideResults(); draw(); }
 function reviewPractice() {
-  // keep answers so user can see what they got right/wrong in practice view
   appMode="practice";
   document.getElementById("btn-practice").className="on";
   document.getElementById("btn-quiz").className="";
   document.getElementById("order-seg").style.display="";
   hideResults(); draw();
 }
-function sw(w)            { cur=w; hideResults(); draw(); }
 
+/* ═══════ INIT ═══════ */
+drawMWPanel();
+drawActiveBadge();
 draw();
 </script>
 </body>
